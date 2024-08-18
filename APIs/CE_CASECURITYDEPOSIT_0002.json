@@ -1,0 +1,4555 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Cash Security Deposit",
+    "version": "2.0.3",
+    "description": "The service contains a list of security deposits. With this service you can create, read, and update cash security deposits. You can change header information, add request documents, reverse, clear, release, partially release, or reset the release of specific cash security deposits.\r\n\r\nAfter a request to fetch security deposits is sent, all filtered security deposits are returned.\r\n\r\nAfter a security deposit has been created using the Create operation, a new security deposit number and the message header are returned.\r\n\r\nAfter a security deposit has been revised, for example, by using the Change or Create Request operation, the number of that revised security deposit and the message header are returned."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD/2408.latest/EN/9c/9d40cd785b4317a85fd3d8e6c3a26e/frameset.htm"
+  },
+  "x-sap-api-type": "ODATAV4",
+  "x-sap-shortText": "Transfer cash security deposit information from an external system to Contract Accounting (FI-CA) in your SAP S/4HANA Cloud system using this synchronous inbound service",
+  "x-sap-software-min-version": "2408",
+  "x-sap-ext-overview": [
+    {
+      "name": "Communication Scenario",
+      "values": [
+        {
+          "text": "Finance - Contract Accounting Security Deposits Integration (SAP_COM_0380)",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Scope Items",
+      "values": [
+        {
+          "text": "[Contract Accounting - Open Item Management (2UJ)](https://me.sap.com/processnavigator/SolP/2UJ \" Link To BP \")",
+          "format": "markdown"
+        },
+        {
+          "text": "[Contract Accounting: Open Item Management (PUJ)](https://me.sap.com/processnavigator/SolP/PUJ \" Link To BP \")",
+          "format": "markdown"
+        }
+      ]
+    },
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Service Group Name",
+      "values": [
+        {
+          "text": "API_CASECURITYDEPOSIT",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Contract Accounting Security Deposit",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata4/sap/api_casecuritydeposit/srvd_a2x/sap/casecuritydeposit/0002",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    },
+    {
+      "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata4/sap/api_casecuritydeposit/srvd_a2x/sap/casecuritydeposit/0002"
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Document Flow"
+    },
+    {
+      "name": "Security Deposit Management"
+    },
+    {
+      "name": "Request Detail"
+    }
+  ],
+  "paths": {
+    "/CAScrtyDepDocumentFlow": {
+      "get": {
+        "summary": "Get entities from CAScrtyDepDocumentFlow",
+        "tags": [
+          "Document Flow"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CASecurityDeposit desc",
+                  "CADocumentNumber",
+                  "CADocumentNumber desc",
+                  "CAScrtyDepositClearedDocument",
+                  "CAScrtyDepositClearedDocument desc",
+                  "CAAuthorizationGroup",
+                  "CAAuthorizationGroup desc",
+                  "CASecurityDepositDocument",
+                  "CASecurityDepositDocument desc",
+                  "CASecurityDepositDocCategory",
+                  "CASecurityDepositDocCategory desc",
+                  "CASecurityDepositDocCatText",
+                  "CASecurityDepositDocCatText desc",
+                  "CAAmountInTransactionCurrency",
+                  "CAAmountInTransactionCurrency desc",
+                  "TransactionCurrency",
+                  "TransactionCurrency desc",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReleasedAmtInPaymentCurrency desc",
+                  "PaymentCurrency",
+                  "PaymentCurrency desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreatedByUserDescription",
+                  "CreatedByUserDescription desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CreationTime",
+                  "CreationTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CADocumentNumber",
+                  "CAScrtyDepositClearedDocument",
+                  "CAAuthorizationGroup",
+                  "CASecurityDepositDocument",
+                  "CASecurityDepositDocCategory",
+                  "CASecurityDepositDocCatText",
+                  "CAAmountInTransactionCurrency",
+                  "TransactionCurrency",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "PaymentCurrency",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "CreationDate",
+                  "CreationTime"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepRequestDetail",
+                  "_CASecurityDeposit"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of A_ScrtyDepReqDocFlow_2_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_ScrtyDepReqDocFlow_2_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CAScrtyDepDocumentFlow/{CASecurityDeposit}/{CADocumentNumber}/{CAScrtyDepositClearedDocument}": {
+      "parameters": [
+        {
+          "name": "CASecurityDeposit",
+          "in": "path",
+          "required": true,
+          "description": "Security Deposit",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "CADocumentNumber",
+          "in": "path",
+          "required": true,
+          "description": "Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "CAScrtyDepositClearedDocument",
+          "in": "path",
+          "required": true,
+          "description": "Number of Cleared Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from CAScrtyDepDocumentFlow by key",
+        "tags": [
+          "Document Flow"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CADocumentNumber",
+                  "CAScrtyDepositClearedDocument",
+                  "CAAuthorizationGroup",
+                  "CASecurityDepositDocument",
+                  "CASecurityDepositDocCategory",
+                  "CASecurityDepositDocCatText",
+                  "CAAmountInTransactionCurrency",
+                  "TransactionCurrency",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "PaymentCurrency",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "CreationDate",
+                  "CreationTime"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepRequestDetail",
+                  "_CASecurityDeposit"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_ScrtyDepReqDocFlow_2_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CAScrtyDepDocumentFlow/{CASecurityDeposit}/{CADocumentNumber}/{CAScrtyDepositClearedDocument}/_CAScrtyDepRequestDetail": {
+      "parameters": [
+        {
+          "name": "CASecurityDeposit",
+          "in": "path",
+          "required": true,
+          "description": "Security Deposit",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "CADocumentNumber",
+          "in": "path",
+          "required": true,
+          "description": "Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "CAScrtyDepositClearedDocument",
+          "in": "path",
+          "required": true,
+          "description": "Number of Cleared Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _CAScrtyDepRequestDetail",
+        "tags": [
+          "Document Flow",
+          "Request Detail"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CADocumentNumber",
+                  "CAAuthorizationGroup",
+                  "CASecDepDocBPItemStatus",
+                  "CASecDepDocBPItemStatusText",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositReqReasonText",
+                  "CAAmountInTransactionCurrency",
+                  "AmountInRefundCurrency",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReversedAmtInTransCurrency",
+                  "CAScrtyDepReqDocRequestAmount",
+                  "TransactionCurrency",
+                  "PaymentCurrency",
+                  "RefundCurrency",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "CreationDate",
+                  "CreationTime",
+                  "CAScrtyDepReqDocCreationDteTme",
+                  "CAPostingDate"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepDocumentFlow",
+                  "_CASecurityDeposit"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CAScrtyDepDocumentFlow/{CASecurityDeposit}/{CADocumentNumber}/{CAScrtyDepositClearedDocument}/_CASecurityDeposit": {
+      "parameters": [
+        {
+          "name": "CASecurityDeposit",
+          "in": "path",
+          "required": true,
+          "description": "Security Deposit",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "CADocumentNumber",
+          "in": "path",
+          "required": true,
+          "description": "Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "CAScrtyDepositClearedDocument",
+          "in": "path",
+          "required": true,
+          "description": "Number of Cleared Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _CASecurityDeposit",
+        "tags": [
+          "Document Flow",
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CASecurityDeposit desc",
+                  "CAAuthorizationGroup",
+                  "CAAuthorizationGroup desc",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositRequestReason desc",
+                  "CASecurityDepositReqReasonText",
+                  "CASecurityDepositReqReasonText desc",
+                  "BusinessPartner",
+                  "BusinessPartner desc",
+                  "BusinessPartnerFullName",
+                  "BusinessPartnerFullName desc",
+                  "IsBusinessPurposeCompleted",
+                  "IsBusinessPurposeCompleted desc",
+                  "StreetName",
+                  "StreetName desc",
+                  "HouseNumber",
+                  "HouseNumber desc",
+                  "PostalCode",
+                  "PostalCode desc",
+                  "HomeTown",
+                  "HomeTown desc",
+                  "Country",
+                  "Country desc",
+                  "CountryName",
+                  "CountryName desc",
+                  "ContractAccount",
+                  "ContractAccount desc",
+                  "ContractAccountName",
+                  "ContractAccountName desc",
+                  "CAContract",
+                  "CAContract desc",
+                  "CASecurityDepositIsReversed",
+                  "CASecurityDepositIsReversed desc",
+                  "CASecurityDepositReversalRsn",
+                  "CASecurityDepositReversalRsn desc",
+                  "CASecurityDepositRvslRsnText",
+                  "CASecurityDepositRvslRsnText desc",
+                  "CASecurityDepositExtReference",
+                  "CASecurityDepositExtReference desc",
+                  "CASecurityDepositStartDate",
+                  "CASecurityDepositStartDate desc",
+                  "CASecurityDepositReturnDate",
+                  "CASecurityDepositReturnDate desc",
+                  "TransactionCurrency",
+                  "TransactionCurrency desc",
+                  "PaymentCurrency",
+                  "PaymentCurrency desc",
+                  "CASecurityDepositRequestAmount",
+                  "CASecurityDepositRequestAmount desc",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReleasedAmtInPaymentCurrency desc",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAPaymentAmountInPaytCurrency desc",
+                  "CAReversedAmtInTransCurrency",
+                  "CAReversedAmtInTransCurrency desc",
+                  "CAInterestCode",
+                  "CAInterestCode desc",
+                  "CAInterestCodeName",
+                  "CAInterestCodeName desc",
+                  "CASecurityDepositIsReleased",
+                  "CASecurityDepositIsReleased desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CAScrtyDepCreationDteTme",
+                  "CAScrtyDepCreationDteTme desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreatedByUserDescription",
+                  "CreatedByUserDescription desc",
+                  "LastChangedDate",
+                  "LastChangedDate desc",
+                  "CAScrtyDepLastChangeDteTme",
+                  "CAScrtyDepLastChangeDteTme desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "LastChangedByUserDescription",
+                  "LastChangedByUserDescription desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CAAuthorizationGroup",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositReqReasonText",
+                  "CACashSecurityDepositStatus",
+                  "CACashSecurityDepositStatusTxt",
+                  "BusinessPartner",
+                  "BusinessPartnerFullName",
+                  "IsBusinessPurposeCompleted",
+                  "StreetName",
+                  "HouseNumber",
+                  "PostalCode",
+                  "HomeTown",
+                  "Country",
+                  "CountryName",
+                  "ContractAccount",
+                  "ContractAccountName",
+                  "CAContract",
+                  "CASecurityDepositIsReversed",
+                  "CASecurityDepositReversalRsn",
+                  "CASecurityDepositRvslRsnText",
+                  "CASecurityDepositExtReference",
+                  "CASecurityDepositStartDate",
+                  "CASecurityDepositReturnDate",
+                  "TransactionCurrency",
+                  "PaymentCurrency",
+                  "AmountInRefundCurrency",
+                  "RefundCurrency",
+                  "CASecurityDepositRequestAmount",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAReversedAmtInTransCurrency",
+                  "CAInterestCode",
+                  "CAInterestCodeName",
+                  "CASecurityDepositIsReleased",
+                  "CreationDate",
+                  "CAScrtyDepCreationDteTme",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "LastChangedDate",
+                  "CAScrtyDepLastChangeDteTme",
+                  "LastChangedByUser",
+                  "LastChangedByUserDescription",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepRequestDetail"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of A_CASecurityDeposit_2_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to related _CASecurityDeposit",
+        "tags": [
+          "Document Flow",
+          "Security Deposit Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDeposit": {
+      "get": {
+        "summary": "Get entities from CASecurityDeposit",
+        "tags": [
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CASecurityDeposit desc",
+                  "CAAuthorizationGroup",
+                  "CAAuthorizationGroup desc",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositRequestReason desc",
+                  "CASecurityDepositReqReasonText",
+                  "CASecurityDepositReqReasonText desc",
+                  "BusinessPartner",
+                  "BusinessPartner desc",
+                  "BusinessPartnerFullName",
+                  "BusinessPartnerFullName desc",
+                  "IsBusinessPurposeCompleted",
+                  "IsBusinessPurposeCompleted desc",
+                  "StreetName",
+                  "StreetName desc",
+                  "HouseNumber",
+                  "HouseNumber desc",
+                  "PostalCode",
+                  "PostalCode desc",
+                  "HomeTown",
+                  "HomeTown desc",
+                  "Country",
+                  "Country desc",
+                  "CountryName",
+                  "CountryName desc",
+                  "ContractAccount",
+                  "ContractAccount desc",
+                  "ContractAccountName",
+                  "ContractAccountName desc",
+                  "CAContract",
+                  "CAContract desc",
+                  "CASecurityDepositIsReversed",
+                  "CASecurityDepositIsReversed desc",
+                  "CASecurityDepositReversalRsn",
+                  "CASecurityDepositReversalRsn desc",
+                  "CASecurityDepositRvslRsnText",
+                  "CASecurityDepositRvslRsnText desc",
+                  "CASecurityDepositExtReference",
+                  "CASecurityDepositExtReference desc",
+                  "CASecurityDepositStartDate",
+                  "CASecurityDepositStartDate desc",
+                  "CASecurityDepositReturnDate",
+                  "CASecurityDepositReturnDate desc",
+                  "TransactionCurrency",
+                  "TransactionCurrency desc",
+                  "PaymentCurrency",
+                  "PaymentCurrency desc",
+                  "CASecurityDepositRequestAmount",
+                  "CASecurityDepositRequestAmount desc",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReleasedAmtInPaymentCurrency desc",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAPaymentAmountInPaytCurrency desc",
+                  "CAReversedAmtInTransCurrency",
+                  "CAReversedAmtInTransCurrency desc",
+                  "CAInterestCode",
+                  "CAInterestCode desc",
+                  "CAInterestCodeName",
+                  "CAInterestCodeName desc",
+                  "CASecurityDepositIsReleased",
+                  "CASecurityDepositIsReleased desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CAScrtyDepCreationDteTme",
+                  "CAScrtyDepCreationDteTme desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreatedByUserDescription",
+                  "CreatedByUserDescription desc",
+                  "LastChangedDate",
+                  "LastChangedDate desc",
+                  "CAScrtyDepLastChangeDteTme",
+                  "CAScrtyDepLastChangeDteTme desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "LastChangedByUserDescription",
+                  "LastChangedByUserDescription desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CAAuthorizationGroup",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositReqReasonText",
+                  "CACashSecurityDepositStatus",
+                  "CACashSecurityDepositStatusTxt",
+                  "BusinessPartner",
+                  "BusinessPartnerFullName",
+                  "IsBusinessPurposeCompleted",
+                  "StreetName",
+                  "HouseNumber",
+                  "PostalCode",
+                  "HomeTown",
+                  "Country",
+                  "CountryName",
+                  "ContractAccount",
+                  "ContractAccountName",
+                  "CAContract",
+                  "CASecurityDepositIsReversed",
+                  "CASecurityDepositReversalRsn",
+                  "CASecurityDepositRvslRsnText",
+                  "CASecurityDepositExtReference",
+                  "CASecurityDepositStartDate",
+                  "CASecurityDepositReturnDate",
+                  "TransactionCurrency",
+                  "PaymentCurrency",
+                  "AmountInRefundCurrency",
+                  "RefundCurrency",
+                  "CASecurityDepositRequestAmount",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAReversedAmtInTransCurrency",
+                  "CAInterestCode",
+                  "CAInterestCodeName",
+                  "CASecurityDepositIsReleased",
+                  "CreationDate",
+                  "CAScrtyDepCreationDteTme",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "LastChangedDate",
+                  "CAScrtyDepLastChangeDteTme",
+                  "LastChangedByUser",
+                  "LastChangedByUserDescription",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepRequestDetail"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of A_CASecurityDeposit_2_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to CASecurityDeposit",
+        "tags": [
+          "Security Deposit Management"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDeposit/{CASecurityDeposit}": {
+      "parameters": [
+        {
+          "name": "CASecurityDeposit",
+          "in": "path",
+          "required": true,
+          "description": "Security Deposit",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from CASecurityDeposit by key",
+        "tags": [
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CAAuthorizationGroup",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositReqReasonText",
+                  "CACashSecurityDepositStatus",
+                  "CACashSecurityDepositStatusTxt",
+                  "BusinessPartner",
+                  "BusinessPartnerFullName",
+                  "IsBusinessPurposeCompleted",
+                  "StreetName",
+                  "HouseNumber",
+                  "PostalCode",
+                  "HomeTown",
+                  "Country",
+                  "CountryName",
+                  "ContractAccount",
+                  "ContractAccountName",
+                  "CAContract",
+                  "CASecurityDepositIsReversed",
+                  "CASecurityDepositReversalRsn",
+                  "CASecurityDepositRvslRsnText",
+                  "CASecurityDepositExtReference",
+                  "CASecurityDepositStartDate",
+                  "CASecurityDepositReturnDate",
+                  "TransactionCurrency",
+                  "PaymentCurrency",
+                  "AmountInRefundCurrency",
+                  "RefundCurrency",
+                  "CASecurityDepositRequestAmount",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAReversedAmtInTransCurrency",
+                  "CAInterestCode",
+                  "CAInterestCodeName",
+                  "CASecurityDepositIsReleased",
+                  "CreationDate",
+                  "CAScrtyDepCreationDteTme",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "LastChangedDate",
+                  "CAScrtyDepLastChangeDteTme",
+                  "LastChangedByUser",
+                  "LastChangedByUserDescription",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepRequestDetail"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDeposit/{CASecurityDeposit}/SAP__self.Clear": {
+      "post": {
+        "summary": "Invoke action Clear",
+        "tags": [
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "name": "CASecurityDeposit",
+            "in": "path",
+            "required": true,
+            "description": "Security Deposit",
+            "schema": {
+              "type": "string",
+              "maxLength": 12
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepClearResult"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDeposit/{CASecurityDeposit}/SAP__self.ReleasePartially": {
+      "post": {
+        "summary": "Invoke action ReleasePartially",
+        "tags": [
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "name": "CASecurityDeposit",
+            "in": "path",
+            "required": true,
+            "description": "Security Deposit",
+            "schema": {
+              "type": "string",
+              "maxLength": 12
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "CAToBeReldAmtInPaymentCurrency": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "format": "decimal",
+                    "x-sap-precision": 11,
+                    "minimum": -99999999999,
+                    "maximum": 99999999999,
+                    "example": 0
+                  },
+                  "TransactionCurrency": {
+                    "type": "string",
+                    "maxLength": 3
+                  },
+                  "CAPaymentMethod": {
+                    "type": "string",
+                    "maxLength": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepRelPrtlyResult"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDeposit/{CASecurityDeposit}/SAP__self.Release": {
+      "post": {
+        "summary": "Invoke action Release",
+        "tags": [
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "name": "CASecurityDeposit",
+            "in": "path",
+            "required": true,
+            "description": "Security Deposit",
+            "schema": {
+              "type": "string",
+              "maxLength": 12
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepReleaseResult"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDeposit/{CASecurityDeposit}/SAP__self.ResetRelease": {
+      "post": {
+        "summary": "Invoke action ResetRelease",
+        "tags": [
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "name": "CASecurityDeposit",
+            "in": "path",
+            "required": true,
+            "description": "Security Deposit",
+            "schema": {
+              "type": "string",
+              "maxLength": 12
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepResetRelResult"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDeposit/{CASecurityDeposit}/SAP__self.Reverse": {
+      "post": {
+        "summary": "Invoke action Reverse",
+        "tags": [
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "name": "CASecurityDeposit",
+            "in": "path",
+            "required": true,
+            "description": "Security Deposit",
+            "schema": {
+              "type": "string",
+              "maxLength": 12
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "CASecurityDepositReversalRsn": {
+                    "type": "string",
+                    "maxLength": 4
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepReverseResult"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDeposit/{CASecurityDeposit}/SAP__self.Change": {
+      "post": {
+        "summary": "Invoke action Change",
+        "tags": [
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "name": "CASecurityDeposit",
+            "in": "path",
+            "required": true,
+            "description": "Security Deposit",
+            "schema": {
+              "type": "string",
+              "maxLength": 12
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "CASecurityDepositStartDate": {
+                    "type": "string",
+                    "nullable": true,
+                    "format": "date",
+                    "example": "2017-04-13"
+                  },
+                  "CASecurityDepositReturnDate": {
+                    "type": "string",
+                    "nullable": true,
+                    "format": "date",
+                    "example": "2017-04-13"
+                  },
+                  "CAInterestCode": {
+                    "type": "string",
+                    "maxLength": 2
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepChangeResult"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDeposit/{CASecurityDeposit}/_CAScrtyDepRequestDetail": {
+      "parameters": [
+        {
+          "name": "CASecurityDeposit",
+          "in": "path",
+          "required": true,
+          "description": "Security Deposit",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _CAScrtyDepRequestDetail",
+        "tags": [
+          "Security Deposit Management",
+          "Request Detail"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CASecurityDeposit desc",
+                  "CADocumentNumber",
+                  "CADocumentNumber desc",
+                  "CAAuthorizationGroup",
+                  "CAAuthorizationGroup desc",
+                  "CASecDepDocBPItemStatus",
+                  "CASecDepDocBPItemStatus desc",
+                  "CASecDepDocBPItemStatusText",
+                  "CASecDepDocBPItemStatusText desc",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositRequestReason desc",
+                  "CASecurityDepositReqReasonText",
+                  "CASecurityDepositReqReasonText desc",
+                  "CAAmountInTransactionCurrency",
+                  "CAAmountInTransactionCurrency desc",
+                  "AmountInRefundCurrency",
+                  "AmountInRefundCurrency desc",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAPaymentAmountInPaytCurrency desc",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReleasedAmtInPaymentCurrency desc",
+                  "CAReversedAmtInTransCurrency",
+                  "CAReversedAmtInTransCurrency desc",
+                  "CAScrtyDepReqDocRequestAmount",
+                  "CAScrtyDepReqDocRequestAmount desc",
+                  "TransactionCurrency",
+                  "TransactionCurrency desc",
+                  "PaymentCurrency",
+                  "PaymentCurrency desc",
+                  "RefundCurrency",
+                  "RefundCurrency desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreatedByUserDescription",
+                  "CreatedByUserDescription desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CreationTime",
+                  "CreationTime desc",
+                  "CAScrtyDepReqDocCreationDteTme",
+                  "CAScrtyDepReqDocCreationDteTme desc",
+                  "CAPostingDate",
+                  "CAPostingDate desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CADocumentNumber",
+                  "CAAuthorizationGroup",
+                  "CASecDepDocBPItemStatus",
+                  "CASecDepDocBPItemStatusText",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositReqReasonText",
+                  "CAAmountInTransactionCurrency",
+                  "AmountInRefundCurrency",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReversedAmtInTransCurrency",
+                  "CAScrtyDepReqDocRequestAmount",
+                  "TransactionCurrency",
+                  "PaymentCurrency",
+                  "RefundCurrency",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "CreationDate",
+                  "CreationTime",
+                  "CAScrtyDepReqDocCreationDteTme",
+                  "CAPostingDate"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepDocumentFlow",
+                  "_CASecurityDeposit"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of A_CASecurityDepositReqDetail_2_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to related _CAScrtyDepRequestDetail",
+        "tags": [
+          "Security Deposit Management",
+          "Request Detail"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDepositReqDetail": {
+      "get": {
+        "summary": "Get entities from CASecurityDepositReqDetail",
+        "tags": [
+          "Request Detail"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CASecurityDeposit desc",
+                  "CADocumentNumber",
+                  "CADocumentNumber desc",
+                  "CAAuthorizationGroup",
+                  "CAAuthorizationGroup desc",
+                  "CASecDepDocBPItemStatus",
+                  "CASecDepDocBPItemStatus desc",
+                  "CASecDepDocBPItemStatusText",
+                  "CASecDepDocBPItemStatusText desc",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositRequestReason desc",
+                  "CASecurityDepositReqReasonText",
+                  "CASecurityDepositReqReasonText desc",
+                  "CAAmountInTransactionCurrency",
+                  "CAAmountInTransactionCurrency desc",
+                  "AmountInRefundCurrency",
+                  "AmountInRefundCurrency desc",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAPaymentAmountInPaytCurrency desc",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReleasedAmtInPaymentCurrency desc",
+                  "CAReversedAmtInTransCurrency",
+                  "CAReversedAmtInTransCurrency desc",
+                  "CAScrtyDepReqDocRequestAmount",
+                  "CAScrtyDepReqDocRequestAmount desc",
+                  "TransactionCurrency",
+                  "TransactionCurrency desc",
+                  "PaymentCurrency",
+                  "PaymentCurrency desc",
+                  "RefundCurrency",
+                  "RefundCurrency desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreatedByUserDescription",
+                  "CreatedByUserDescription desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CreationTime",
+                  "CreationTime desc",
+                  "CAScrtyDepReqDocCreationDteTme",
+                  "CAScrtyDepReqDocCreationDteTme desc",
+                  "CAPostingDate",
+                  "CAPostingDate desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CADocumentNumber",
+                  "CAAuthorizationGroup",
+                  "CASecDepDocBPItemStatus",
+                  "CASecDepDocBPItemStatusText",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositReqReasonText",
+                  "CAAmountInTransactionCurrency",
+                  "AmountInRefundCurrency",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReversedAmtInTransCurrency",
+                  "CAScrtyDepReqDocRequestAmount",
+                  "TransactionCurrency",
+                  "PaymentCurrency",
+                  "RefundCurrency",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "CreationDate",
+                  "CreationTime",
+                  "CAScrtyDepReqDocCreationDteTme",
+                  "CAPostingDate"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepDocumentFlow",
+                  "_CASecurityDeposit"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of A_CASecurityDepositReqDetail_2_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDepositReqDetail/{CASecurityDeposit}/{CADocumentNumber}": {
+      "parameters": [
+        {
+          "name": "CASecurityDeposit",
+          "in": "path",
+          "required": true,
+          "description": "Security Deposit",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "CADocumentNumber",
+          "in": "path",
+          "required": true,
+          "description": "Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from CASecurityDepositReqDetail by key",
+        "tags": [
+          "Request Detail"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CADocumentNumber",
+                  "CAAuthorizationGroup",
+                  "CASecDepDocBPItemStatus",
+                  "CASecDepDocBPItemStatusText",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositReqReasonText",
+                  "CAAmountInTransactionCurrency",
+                  "AmountInRefundCurrency",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReversedAmtInTransCurrency",
+                  "CAScrtyDepReqDocRequestAmount",
+                  "TransactionCurrency",
+                  "PaymentCurrency",
+                  "RefundCurrency",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "CreationDate",
+                  "CreationTime",
+                  "CAScrtyDepReqDocCreationDteTme",
+                  "CAPostingDate"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepDocumentFlow",
+                  "_CASecurityDeposit"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDepositReqDetail/{CASecurityDeposit}/{CADocumentNumber}/_CAScrtyDepDocumentFlow": {
+      "parameters": [
+        {
+          "name": "CASecurityDeposit",
+          "in": "path",
+          "required": true,
+          "description": "Security Deposit",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "CADocumentNumber",
+          "in": "path",
+          "required": true,
+          "description": "Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _CAScrtyDepDocumentFlow",
+        "tags": [
+          "Request Detail",
+          "Document Flow"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CASecurityDeposit desc",
+                  "CADocumentNumber",
+                  "CADocumentNumber desc",
+                  "CAScrtyDepositClearedDocument",
+                  "CAScrtyDepositClearedDocument desc",
+                  "CAAuthorizationGroup",
+                  "CAAuthorizationGroup desc",
+                  "CASecurityDepositDocument",
+                  "CASecurityDepositDocument desc",
+                  "CASecurityDepositDocCategory",
+                  "CASecurityDepositDocCategory desc",
+                  "CASecurityDepositDocCatText",
+                  "CASecurityDepositDocCatText desc",
+                  "CAAmountInTransactionCurrency",
+                  "CAAmountInTransactionCurrency desc",
+                  "TransactionCurrency",
+                  "TransactionCurrency desc",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAReleasedAmtInPaymentCurrency desc",
+                  "PaymentCurrency",
+                  "PaymentCurrency desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreatedByUserDescription",
+                  "CreatedByUserDescription desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CreationTime",
+                  "CreationTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CADocumentNumber",
+                  "CAScrtyDepositClearedDocument",
+                  "CAAuthorizationGroup",
+                  "CASecurityDepositDocument",
+                  "CASecurityDepositDocCategory",
+                  "CASecurityDepositDocCatText",
+                  "CAAmountInTransactionCurrency",
+                  "TransactionCurrency",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "PaymentCurrency",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "CreationDate",
+                  "CreationTime"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepRequestDetail",
+                  "_CASecurityDeposit"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of A_ScrtyDepReqDocFlow_2_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_ScrtyDepReqDocFlow_2_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CASecurityDepositReqDetail/{CASecurityDeposit}/{CADocumentNumber}/_CASecurityDeposit": {
+      "parameters": [
+        {
+          "name": "CASecurityDeposit",
+          "in": "path",
+          "required": true,
+          "description": "Security Deposit",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "CADocumentNumber",
+          "in": "path",
+          "required": true,
+          "description": "Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _CASecurityDeposit",
+        "tags": [
+          "Request Detail",
+          "Security Deposit Management"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CASecurityDeposit",
+                  "CAAuthorizationGroup",
+                  "CASecurityDepositRequestReason",
+                  "CASecurityDepositReqReasonText",
+                  "CACashSecurityDepositStatus",
+                  "CACashSecurityDepositStatusTxt",
+                  "BusinessPartner",
+                  "BusinessPartnerFullName",
+                  "IsBusinessPurposeCompleted",
+                  "StreetName",
+                  "HouseNumber",
+                  "PostalCode",
+                  "HomeTown",
+                  "Country",
+                  "CountryName",
+                  "ContractAccount",
+                  "ContractAccountName",
+                  "CAContract",
+                  "CASecurityDepositIsReversed",
+                  "CASecurityDepositReversalRsn",
+                  "CASecurityDepositRvslRsnText",
+                  "CASecurityDepositExtReference",
+                  "CASecurityDepositStartDate",
+                  "CASecurityDepositReturnDate",
+                  "TransactionCurrency",
+                  "PaymentCurrency",
+                  "AmountInRefundCurrency",
+                  "RefundCurrency",
+                  "CASecurityDepositRequestAmount",
+                  "CAReleasedAmtInPaymentCurrency",
+                  "CAPaymentAmountInPaytCurrency",
+                  "CAReversedAmtInTransCurrency",
+                  "CAInterestCode",
+                  "CAInterestCodeName",
+                  "CASecurityDepositIsReleased",
+                  "CreationDate",
+                  "CAScrtyDepCreationDteTme",
+                  "CreatedByUser",
+                  "CreatedByUserDescription",
+                  "LastChangedDate",
+                  "CAScrtyDepLastChangeDteTme",
+                  "LastChangedByUser",
+                  "LastChangedByUserDescription",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_CAScrtyDepRequestDetail"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET CAScrtyDepDocumentFlow HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_ScrtyDepReqDocFlow_2_Type": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          },
+          "CADocumentNumber": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Document"
+          },
+          "CAScrtyDepositClearedDocument": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Cleared Document",
+            "description": "Number of Cleared Document"
+          },
+          "CAAuthorizationGroup": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgAuthorizationGroup",
+            "title": "Authorization Group"
+          },
+          "CASecurityDepositDocument": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Document"
+          },
+          "CASecurityDepositDocCategory": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepDocCategory",
+            "title": "Category",
+            "description": "Document Category of Security Deposit"
+          },
+          "CASecurityDepositDocCatText": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Document Category",
+            "description": "Description of Document Category of Security Deposit"
+          },
+          "CAAmountInTransactionCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Document Amount"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "CAReleasedAmtInPaymentCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Released Amount",
+            "description": "Released Amount of Cash Security Deposit"
+          },
+          "PaymentCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "CreatedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Created At",
+            "description": "Time at Which the Object Was Created"
+          },
+          "_CAScrtyDepRequestDetail": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type"
+          },
+          "_CASecurityDeposit": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type"
+            }
+          }
+        },
+        "title": "Document Flow"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_ScrtyDepReqDocFlow_2_Type-create": {
+        "type": "object",
+        "properties": {
+          "CAAuthorizationGroup": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgAuthorizationGroup",
+            "title": "Authorization Group"
+          },
+          "CASecurityDepositDocument": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Document"
+          },
+          "CASecurityDepositDocCategory": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepDocCategory",
+            "title": "Category",
+            "description": "Document Category of Security Deposit"
+          },
+          "CASecurityDepositDocCatText": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Document Category",
+            "description": "Description of Document Category of Security Deposit"
+          },
+          "CAAmountInTransactionCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Document Amount"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "CAReleasedAmtInPaymentCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Released Amount",
+            "description": "Released Amount of Cash Security Deposit"
+          },
+          "PaymentCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "CreatedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Created At",
+            "description": "Time at Which the Object Was Created"
+          },
+          "_CAScrtyDepRequestDetail": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type-create"
+          },
+          "_CASecurityDeposit": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type-create"
+            }
+          }
+        },
+        "title": "Document Flow (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_ScrtyDepReqDocFlow_2_Type-update": {
+        "type": "object",
+        "properties": {
+          "CAAuthorizationGroup": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgAuthorizationGroup",
+            "title": "Authorization Group"
+          },
+          "CASecurityDepositDocument": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Document"
+          },
+          "CASecurityDepositDocCategory": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepDocCategory",
+            "title": "Category",
+            "description": "Document Category of Security Deposit"
+          },
+          "CASecurityDepositDocCatText": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Document Category",
+            "description": "Description of Document Category of Security Deposit"
+          },
+          "CAAmountInTransactionCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Document Amount"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "CAReleasedAmtInPaymentCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Released Amount",
+            "description": "Released Amount of Cash Security Deposit"
+          },
+          "PaymentCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "CreatedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Created At",
+            "description": "Time at Which the Object Was Created"
+          }
+        },
+        "title": "Document Flow (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          },
+          "CADocumentNumber": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Document"
+          },
+          "CAAuthorizationGroup": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgAuthorizationGroup",
+            "title": "Authorization Group"
+          },
+          "CASecDepDocBPItemStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepDocBPItmSts",
+            "title": "Payment Status",
+            "description": "Payment Status of a Contract Accounting Document"
+          },
+          "CASecDepDocBPItemStatusText": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Payment Status",
+            "description": "Description of a Payment Status of a Document"
+          },
+          "CASecurityDepositRequestReason": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepositReqRsn",
+            "title": "Document Request Reason"
+          },
+          "CASecurityDepositReqReasonText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Request Reason Desc.",
+            "description": "Request Reason Description"
+          },
+          "CAAmountInTransactionCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Document Amount"
+          },
+          "AmountInRefundCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Refunded Amount",
+            "description": "Returned Amount"
+          },
+          "CAPaymentAmountInPaytCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Payment",
+            "description": "Cash Security Deposit Payment"
+          },
+          "CAReleasedAmtInPaymentCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Released Amount",
+            "description": "Released Amount of Cash Security Deposit"
+          },
+          "CAReversedAmtInTransCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Reversed Amount"
+          },
+          "CAScrtyDepReqDocRequestAmount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Request Amount",
+            "description": "Requested Amount for Security Deposit"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "PaymentCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Payment Currency",
+            "description": "Payment Currency Key"
+          },
+          "RefundCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Refund Currency",
+            "description": "Return Currency"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "CreatedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Created At",
+            "description": "Time at Which the Object Was Created"
+          },
+          "CAScrtyDepReqDocCreationDteTme": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Creation Time",
+            "description": "Creation Time in User Timezone"
+          },
+          "CAPostingDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Posting Date",
+            "description": "Posting Date in the Document"
+          },
+          "_CAScrtyDepDocumentFlow": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_ScrtyDepReqDocFlow_2_Type"
+            }
+          },
+          "_CASecurityDeposit": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type"
+          }
+        },
+        "title": "Request Detail"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type-create": {
+        "type": "object",
+        "properties": {
+          "CAAuthorizationGroup": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgAuthorizationGroup",
+            "title": "Authorization Group"
+          },
+          "CASecDepDocBPItemStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepDocBPItmSts",
+            "title": "Payment Status",
+            "description": "Payment Status of a Contract Accounting Document"
+          },
+          "CASecDepDocBPItemStatusText": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Payment Status",
+            "description": "Description of a Payment Status of a Document"
+          },
+          "CASecurityDepositRequestReason": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepositReqRsn",
+            "title": "Document Request Reason"
+          },
+          "CASecurityDepositReqReasonText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Request Reason Desc.",
+            "description": "Request Reason Description"
+          },
+          "CAAmountInTransactionCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Document Amount"
+          },
+          "AmountInRefundCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Refunded Amount",
+            "description": "Returned Amount"
+          },
+          "CAPaymentAmountInPaytCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Payment",
+            "description": "Cash Security Deposit Payment"
+          },
+          "CAReleasedAmtInPaymentCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Released Amount",
+            "description": "Released Amount of Cash Security Deposit"
+          },
+          "CAReversedAmtInTransCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Reversed Amount"
+          },
+          "CAScrtyDepReqDocRequestAmount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Request Amount",
+            "description": "Requested Amount for Security Deposit"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "PaymentCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Payment Currency",
+            "description": "Payment Currency Key"
+          },
+          "RefundCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Refund Currency",
+            "description": "Return Currency"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "CreatedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Created At",
+            "description": "Time at Which the Object Was Created"
+          },
+          "CAScrtyDepReqDocCreationDteTme": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Creation Time",
+            "description": "Creation Time in User Timezone"
+          },
+          "CAPostingDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Posting Date",
+            "description": "Posting Date in the Document"
+          },
+          "_CAScrtyDepDocumentFlow": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_ScrtyDepReqDocFlow_2_Type-create"
+            }
+          },
+          "_CASecurityDeposit": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type-create"
+          }
+        },
+        "title": "Request Detail (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type-update": {
+        "type": "object",
+        "properties": {
+          "CAAuthorizationGroup": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgAuthorizationGroup",
+            "title": "Authorization Group"
+          },
+          "CASecDepDocBPItemStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepDocBPItmSts",
+            "title": "Payment Status",
+            "description": "Payment Status of a Contract Accounting Document"
+          },
+          "CASecDepDocBPItemStatusText": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Payment Status",
+            "description": "Description of a Payment Status of a Document"
+          },
+          "CASecurityDepositRequestReason": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepositReqRsn",
+            "title": "Document Request Reason"
+          },
+          "CASecurityDepositReqReasonText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Request Reason Desc.",
+            "description": "Request Reason Description"
+          },
+          "CAAmountInTransactionCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Document Amount"
+          },
+          "AmountInRefundCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Refunded Amount",
+            "description": "Returned Amount"
+          },
+          "CAPaymentAmountInPaytCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Payment",
+            "description": "Cash Security Deposit Payment"
+          },
+          "CAReleasedAmtInPaymentCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Released Amount",
+            "description": "Released Amount of Cash Security Deposit"
+          },
+          "CAReversedAmtInTransCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Reversed Amount"
+          },
+          "CAScrtyDepReqDocRequestAmount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Request Amount",
+            "description": "Requested Amount for Security Deposit"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "PaymentCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Payment Currency",
+            "description": "Payment Currency Key"
+          },
+          "RefundCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Refund Currency",
+            "description": "Return Currency"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "CreatedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Created At",
+            "description": "Time at Which the Object Was Created"
+          },
+          "CAScrtyDepReqDocCreationDteTme": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Creation Time",
+            "description": "Creation Time in User Timezone"
+          },
+          "CAPostingDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Posting Date",
+            "description": "Posting Date in the Document"
+          }
+        },
+        "title": "Request Detail (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          },
+          "CAAuthorizationGroup": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgAuthorizationGroup",
+            "title": "Authorization Group"
+          },
+          "CASecurityDepositRequestReason": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepositReqRsn",
+            "title": "Request Reason",
+            "description": "Reason for Requesting a Security Deposit"
+          },
+          "CASecurityDepositReqReasonText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Request Reason Desc.",
+            "description": "Request Reason Description"
+          },
+          "CACashSecurityDepositStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgCashScrtyDepStatus",
+            "title": "Status",
+            "description": "Cash security deposit status"
+          },
+          "CACashSecurityDepositStatusTxt": {
+            "type": "string",
+            "maxLength": 128,
+            "title": "Status Text",
+            "description": "Status Text of Security Deposit"
+          },
+          "BusinessPartner": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Business Partner",
+            "description": "Business Partner Number"
+          },
+          "BusinessPartnerFullName": {
+            "type": "string",
+            "maxLength": 128,
+            "title": "Charact.string (128)",
+            "description": "Character String - 128 User-Defined Characters"
+          },
+          "IsBusinessPurposeCompleted": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Purpose Completed",
+            "description": "Business Purpose Completed Flag"
+          },
+          "StreetName": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Street"
+          },
+          "HouseNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "House Number"
+          },
+          "PostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Postal Code",
+            "description": "City Postal Code"
+          },
+          "HomeTown": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "City"
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "CountryName": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Country/Region Name"
+          },
+          "ContractAccount": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Contract Account",
+            "description": "Contract Account Number"
+          },
+          "ContractAccountName": {
+            "type": "string",
+            "maxLength": 35,
+            "title": "Contract Acct Name",
+            "description": "Contract Account Name"
+          },
+          "CAContract": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Contract",
+            "description": "Reference Specifications from Contract"
+          },
+          "CASecurityDepositIsReversed": {
+            "type": "boolean",
+            "title": "Sec.Deposit Reversed",
+            "description": "Security Deposit Reversed"
+          },
+          "CASecurityDepositReversalRsn": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepositRvslRsn",
+            "title": "Reversal Reason",
+            "description": "Reversal reason for security deposit"
+          },
+          "CASecurityDepositRvslRsnText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Reversal Reason Desc",
+            "description": "Reversal Reason Description"
+          },
+          "CASecurityDepositExtReference": {
+            "type": "string",
+            "maxLength": 35,
+            "title": "External Reference",
+            "description": "External Reference Number of Security Deposit"
+          },
+          "CASecurityDepositStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Start Date",
+            "description": "Start date for security deposit"
+          },
+          "CASecurityDepositReturnDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Return Date",
+            "description": "Return Date for Security Deposit"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "PaymentCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Payment Currency",
+            "description": "Payment Currency Key"
+          },
+          "AmountInRefundCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Refunded Amount",
+            "description": "Returned Amount"
+          },
+          "RefundCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Refund Currency",
+            "description": "Return Currency"
+          },
+          "CASecurityDepositRequestAmount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Request Amount",
+            "description": "Requested Amount for Security Deposit"
+          },
+          "CAReleasedAmtInPaymentCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Released Amount",
+            "description": "Released Amount of Cash Security Deposit"
+          },
+          "CAPaymentAmountInPaytCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Payment",
+            "description": "Cash Security Deposit Payment"
+          },
+          "CAReversedAmtInTransCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Reversed Amount"
+          },
+          "CAInterestCode": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgInterestCode",
+            "title": "Interest Key"
+          },
+          "CAInterestCodeName": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Name",
+            "description": "Interest Key Description"
+          },
+          "CASecurityDepositIsReleased": {
+            "type": "boolean",
+            "title": "Released",
+            "description": "Security Deposits Were Released"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CAScrtyDepCreationDteTme": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Creation Time",
+            "description": "Creation Time in User Timezone"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "CreatedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "LastChangedDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Changed On",
+            "description": "Last Changed On"
+          },
+          "CAScrtyDepLastChangeDteTme": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Last Change Time",
+            "description": "Last Change Time in User Timezone"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Changed By"
+          },
+          "LastChangedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.SAP__Message"
+            }
+          },
+          "_CAScrtyDepRequestDetail": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type"
+            }
+          }
+        },
+        "title": "Security Deposit Management"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type-create": {
+        "type": "object",
+        "properties": {
+          "CAAuthorizationGroup": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgAuthorizationGroup",
+            "title": "Authorization Group"
+          },
+          "CASecurityDepositRequestReason": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepositReqRsn",
+            "title": "Request Reason",
+            "description": "Reason for Requesting a Security Deposit"
+          },
+          "CASecurityDepositReqReasonText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Request Reason Desc.",
+            "description": "Request Reason Description"
+          },
+          "BusinessPartner": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Business Partner",
+            "description": "Business Partner Number"
+          },
+          "BusinessPartnerFullName": {
+            "type": "string",
+            "maxLength": 128,
+            "title": "Charact.string (128)",
+            "description": "Character String - 128 User-Defined Characters"
+          },
+          "IsBusinessPurposeCompleted": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Purpose Completed",
+            "description": "Business Purpose Completed Flag"
+          },
+          "StreetName": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Street"
+          },
+          "HouseNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "House Number"
+          },
+          "PostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Postal Code",
+            "description": "City Postal Code"
+          },
+          "HomeTown": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "City"
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "CountryName": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Country/Region Name"
+          },
+          "ContractAccount": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Contract Account",
+            "description": "Contract Account Number"
+          },
+          "ContractAccountName": {
+            "type": "string",
+            "maxLength": 35,
+            "title": "Contract Acct Name",
+            "description": "Contract Account Name"
+          },
+          "CAContract": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Contract",
+            "description": "Reference Specifications from Contract"
+          },
+          "CASecurityDepositIsReversed": {
+            "type": "boolean",
+            "title": "Sec.Deposit Reversed",
+            "description": "Security Deposit Reversed"
+          },
+          "CASecurityDepositReversalRsn": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepositRvslRsn",
+            "title": "Reversal Reason",
+            "description": "Reversal reason for security deposit"
+          },
+          "CASecurityDepositRvslRsnText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Reversal Reason Desc",
+            "description": "Reversal Reason Description"
+          },
+          "CASecurityDepositExtReference": {
+            "type": "string",
+            "maxLength": 35,
+            "title": "External Reference",
+            "description": "External Reference Number of Security Deposit"
+          },
+          "CASecurityDepositStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Start Date",
+            "description": "Start date for security deposit"
+          },
+          "CASecurityDepositReturnDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Return Date",
+            "description": "Return Date for Security Deposit"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "PaymentCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Payment Currency",
+            "description": "Payment Currency Key"
+          },
+          "CASecurityDepositRequestAmount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Request Amount",
+            "description": "Requested Amount for Security Deposit"
+          },
+          "CAReleasedAmtInPaymentCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Released Amount",
+            "description": "Released Amount of Cash Security Deposit"
+          },
+          "CAPaymentAmountInPaytCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Payment",
+            "description": "Cash Security Deposit Payment"
+          },
+          "CAReversedAmtInTransCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Reversed Amount"
+          },
+          "CAInterestCode": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgInterestCode",
+            "title": "Interest Key"
+          },
+          "CAInterestCodeName": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Name",
+            "description": "Interest Key Description"
+          },
+          "CASecurityDepositIsReleased": {
+            "type": "boolean",
+            "title": "Released",
+            "description": "Security Deposits Were Released"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CAScrtyDepCreationDteTme": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Creation Time",
+            "description": "Creation Time in User Timezone"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "CreatedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "LastChangedDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Changed On",
+            "description": "Last Changed On"
+          },
+          "CAScrtyDepLastChangeDteTme": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Last Change Time",
+            "description": "Last Change Time in User Timezone"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Changed By"
+          },
+          "LastChangedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.SAP__Message-create"
+            }
+          },
+          "_CAScrtyDepRequestDetail": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDepositReqDetail_2_Type-create"
+            }
+          }
+        },
+        "title": "Security Deposit Management (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.A_CASecurityDeposit_2_Type-update": {
+        "type": "object",
+        "properties": {
+          "CAAuthorizationGroup": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgAuthorizationGroup",
+            "title": "Authorization Group"
+          },
+          "CASecurityDepositRequestReason": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepositReqRsn",
+            "title": "Request Reason",
+            "description": "Reason for Requesting a Security Deposit"
+          },
+          "CASecurityDepositReqReasonText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Request Reason Desc.",
+            "description": "Request Reason Description"
+          },
+          "BusinessPartner": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Business Partner",
+            "description": "Business Partner Number"
+          },
+          "BusinessPartnerFullName": {
+            "type": "string",
+            "maxLength": 128,
+            "title": "Charact.string (128)",
+            "description": "Character String - 128 User-Defined Characters"
+          },
+          "IsBusinessPurposeCompleted": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Purpose Completed",
+            "description": "Business Purpose Completed Flag"
+          },
+          "StreetName": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Street"
+          },
+          "HouseNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "House Number"
+          },
+          "PostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Postal Code",
+            "description": "City Postal Code"
+          },
+          "HomeTown": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "City"
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "CountryName": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Country/Region Name"
+          },
+          "ContractAccount": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Contract Account",
+            "description": "Contract Account Number"
+          },
+          "ContractAccountName": {
+            "type": "string",
+            "maxLength": 35,
+            "title": "Contract Acct Name",
+            "description": "Contract Account Name"
+          },
+          "CAContract": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Contract",
+            "description": "Reference Specifications from Contract"
+          },
+          "CASecurityDepositIsReversed": {
+            "type": "boolean",
+            "title": "Sec.Deposit Reversed",
+            "description": "Security Deposit Reversed"
+          },
+          "CASecurityDepositReversalRsn": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgScrtyDepositRvslRsn",
+            "title": "Reversal Reason",
+            "description": "Reversal reason for security deposit"
+          },
+          "CASecurityDepositRvslRsnText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Reversal Reason Desc",
+            "description": "Reversal Reason Description"
+          },
+          "CASecurityDepositExtReference": {
+            "type": "string",
+            "maxLength": 35,
+            "title": "External Reference",
+            "description": "External Reference Number of Security Deposit"
+          },
+          "CASecurityDepositStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Start Date",
+            "description": "Start date for security deposit"
+          },
+          "CASecurityDepositReturnDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Return Date",
+            "description": "Return Date for Security Deposit"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "PaymentCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Payment Currency",
+            "description": "Payment Currency Key"
+          },
+          "CASecurityDepositRequestAmount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Request Amount",
+            "description": "Requested Amount for Security Deposit"
+          },
+          "CAReleasedAmtInPaymentCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Released Amount",
+            "description": "Released Amount of Cash Security Deposit"
+          },
+          "CAPaymentAmountInPaytCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 11,
+            "minimum": -99999999999,
+            "maximum": 99999999999,
+            "example": 0,
+            "title": "Payment",
+            "description": "Cash Security Deposit Payment"
+          },
+          "CAReversedAmtInTransCurrency": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0,
+            "title": "Reversed Amount"
+          },
+          "CAInterestCode": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgInterestCode",
+            "title": "Interest Key"
+          },
+          "CAInterestCodeName": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Name",
+            "description": "Interest Key Description"
+          },
+          "CASecurityDepositIsReleased": {
+            "type": "boolean",
+            "title": "Released",
+            "description": "Security Deposits Were Released"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CAScrtyDepCreationDteTme": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Creation Time",
+            "description": "Creation Time in User Timezone"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "CreatedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "LastChangedDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Changed On",
+            "description": "Last Changed On"
+          },
+          "CAScrtyDepLastChangeDteTme": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Last Change Time",
+            "description": "Last Change Time in User Timezone"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Changed By"
+          },
+          "LastChangedByUserDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Description",
+            "description": "User Description"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.SAP__Message-update"
+            }
+          }
+        },
+        "title": "Security Deposit Management (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepClearResult": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepClearResult"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepClearResult-create": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepClearResult (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepClearResult-update": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepClearResult (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepRelPrtlyResult": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepRelPrtlyResult"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepRelPrtlyResult-create": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepRelPrtlyResult (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepRelPrtlyResult-update": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepRelPrtlyResult (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepChangeResult": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepChangeResult"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepChangeResult-create": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepChangeResult (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepChangeResult-update": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepChangeResult (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepResetRelResult": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepResetRelResult"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepResetRelResult-create": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepResetRelResult (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepResetRelResult-update": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepResetRelResult (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepReverseResult": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepReverseResult"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepReverseResult-create": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepReverseResult (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepReverseResult-update": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepReverseResult (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepReleaseResult": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepReleaseResult"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepReleaseResult-create": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepReleaseResult (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.D_CAScrtyDepReleaseResult-update": {
+        "type": "object",
+        "properties": {
+          "CASecurityDeposit": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Security Deposit"
+          }
+        },
+        "title": "D_CAScrtyDepReleaseResult (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.SAP__Message": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalTargets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transition": {
+            "type": "boolean"
+          },
+          "numericSeverity": {
+            "type": "integer",
+            "format": "uint8"
+          },
+          "longtextUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "title": "SAP__Message"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.SAP__Message-create": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalTargets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transition": {
+            "type": "boolean"
+          },
+          "numericSeverity": {
+            "type": "integer",
+            "format": "uint8"
+          },
+          "longtextUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "title": "SAP__Message (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_casecuritydeposit_2.v0001.SAP__Message-update": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalTargets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transition": {
+            "type": "boolean"
+          },
+          "numericSeverity": {
+            "type": "integer",
+            "format": "uint8"
+          },
+          "longtextUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "title": "SAP__Message (for update)"
+      },
+      "count": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "description": "The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "target": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)",
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "search": {
+        "name": "$search",
+        "in": "query",
+        "description": "Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ]
+}

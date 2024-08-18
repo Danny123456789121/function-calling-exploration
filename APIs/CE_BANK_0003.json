@@ -1,0 +1,3752 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Bank",
+    "version": "3.0.1",
+    "description": "This service is a successor of Bank service version 1 and 2, which ensures bank address data harmonization and should be solely used.\r\n\r\nIt consists from three entities:\r\n\r\nBank - Contains basic bank identifiers like Bank Number, BIC/SWIFT code, Bank Name and Bank Branch\r\nBank Address - Contains the standard address fields identifying default Bank Address\r\nBankScriptedAddress - Contains international address version. The version is identified by Address Representation Code."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD/2408.latest/EN/8b/9bee823d8d4965af7220d506b2f3f9/frameset.htm"
+  },
+  "x-sap-api-type": "ODATAV4",
+  "x-sap-shortText": "Create, read and update bank master data using this synchronous inbound service",
+  "x-sap-software-min-version": "2408",
+  "x-sap-ext-overview": [
+    {
+      "name": "Communication Scenario",
+      "values": [
+        {
+          "text": "Bank - Bank Integration (SAP_COM_0379)",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Scope Items",
+      "values": [
+        {
+          "text": "[Basic Bank Account Management (BFA)](https://me.sap.com/processnavigator/SolP/BFA \" Link To BP \")",
+          "format": "markdown"
+        },
+        {
+          "text": "[Basic Bank Account Management (OFA)](https://me.sap.com/processnavigator/SolP/OFA \" Link To BP \")",
+          "format": "markdown"
+        }
+      ]
+    },
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Service Group Name",
+      "values": [
+        {
+          "text": "API_BANK",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Bank",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata4/sap/api_bank/srvd_a2x/sap/bank/0003",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    },
+    {
+      "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata4/sap/api_bank/srvd_a2x/sap/bank/0003"
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Bank"
+    },
+    {
+      "name": "Bank Address"
+    },
+    {
+      "name": "Scripted Addresses"
+    }
+  ],
+  "paths": {
+    "/Bank": {
+      "get": {
+        "summary": "Get entities from Bank",
+        "tags": [
+          "Bank"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankCountry desc",
+                  "BankInternalID",
+                  "BankInternalID desc",
+                  "LongBankName",
+                  "LongBankName desc",
+                  "LongBankBranch",
+                  "LongBankBranch desc",
+                  "SWIFTCode",
+                  "SWIFTCode desc",
+                  "BankNetworkGrouping",
+                  "BankNetworkGrouping desc",
+                  "IsMarkedForDeletion",
+                  "IsMarkedForDeletion desc",
+                  "BankNumber",
+                  "BankNumber desc",
+                  "BankCategory",
+                  "BankCategory desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "LongBankName",
+                  "LongBankBranch",
+                  "SWIFTCode",
+                  "BankNetworkGrouping",
+                  "IsMarkedForDeletion",
+                  "BankNumber",
+                  "BankCategory",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_BankAddress"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of BankType",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to Bank",
+        "tags": [
+          "Bank"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Bank/{BankCountry}/{BankInternalID}": {
+      "parameters": [
+        {
+          "name": "BankCountry",
+          "in": "path",
+          "required": true,
+          "description": "Bank Country/Region Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        {
+          "name": "BankInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Bank Keys",
+          "schema": {
+            "type": "string",
+            "maxLength": 15
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from Bank by key",
+        "tags": [
+          "Bank"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "LongBankName",
+                  "LongBankBranch",
+                  "SWIFTCode",
+                  "BankNetworkGrouping",
+                  "IsMarkedForDeletion",
+                  "BankNumber",
+                  "BankCategory",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_BankAddress"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in Bank",
+        "tags": [
+          "Bank"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Bank/{BankCountry}/{BankInternalID}/_BankAddress": {
+      "parameters": [
+        {
+          "name": "BankCountry",
+          "in": "path",
+          "required": true,
+          "description": "Bank Country/Region Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        {
+          "name": "BankInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Bank Keys",
+          "schema": {
+            "type": "string",
+            "maxLength": 15
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _BankAddress",
+        "tags": [
+          "Bank",
+          "Bank Address"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "StreetName",
+                  "HouseNumber",
+                  "HouseNumberSupplementText",
+                  "CityName",
+                  "PostalCode",
+                  "Country",
+                  "Region",
+                  "CorrespondenceLanguage",
+                  "DistrictName",
+                  "VillageName",
+                  "CompanyPostalCode",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetPrefixName1",
+                  "StreetPrefixName2",
+                  "StreetSuffixName1",
+                  "StreetSuffixName2",
+                  "Building",
+                  "Floor",
+                  "RoomNumber",
+                  "FormOfAddress",
+                  "TaxJurisdiction",
+                  "TransportZone",
+                  "POBox",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxIsWithoutNumber",
+                  "POBoxPostalCode",
+                  "POBoxLobbyName",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingCountry",
+                  "CareOfName",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceNumber",
+                  "AddressTimeZone",
+                  "SecondaryRegionName",
+                  "TertiaryRegionName",
+                  "AddressRepresentationCode",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm2",
+                  "InternationalPhoneNumber",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalFaxNumber",
+                  "EmailAddress",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Bank",
+                  "_BankScriptVariant"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BankAddress": {
+      "get": {
+        "summary": "Get entities from BankAddress",
+        "tags": [
+          "Bank Address"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankCountry desc",
+                  "BankInternalID",
+                  "BankInternalID desc",
+                  "StreetName",
+                  "StreetName desc",
+                  "HouseNumber",
+                  "HouseNumber desc",
+                  "HouseNumberSupplementText",
+                  "HouseNumberSupplementText desc",
+                  "CityName",
+                  "CityName desc",
+                  "PostalCode",
+                  "PostalCode desc",
+                  "Country",
+                  "Country desc",
+                  "Region",
+                  "Region desc",
+                  "CorrespondenceLanguage",
+                  "CorrespondenceLanguage desc",
+                  "DistrictName",
+                  "DistrictName desc",
+                  "VillageName",
+                  "VillageName desc",
+                  "CompanyPostalCode",
+                  "CompanyPostalCode desc",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetAddrNonDeliverableReason desc",
+                  "StreetPrefixName1",
+                  "StreetPrefixName1 desc",
+                  "StreetPrefixName2",
+                  "StreetPrefixName2 desc",
+                  "StreetSuffixName1",
+                  "StreetSuffixName1 desc",
+                  "StreetSuffixName2",
+                  "StreetSuffixName2 desc",
+                  "Building",
+                  "Building desc",
+                  "Floor",
+                  "Floor desc",
+                  "RoomNumber",
+                  "RoomNumber desc",
+                  "FormOfAddress",
+                  "FormOfAddress desc",
+                  "TaxJurisdiction",
+                  "TaxJurisdiction desc",
+                  "TransportZone",
+                  "TransportZone desc",
+                  "POBox",
+                  "POBox desc",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxAddrNonDeliverableReason desc",
+                  "POBoxIsWithoutNumber",
+                  "POBoxIsWithoutNumber desc",
+                  "POBoxPostalCode",
+                  "POBoxPostalCode desc",
+                  "POBoxLobbyName",
+                  "POBoxLobbyName desc",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingCityName desc",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingRegion desc",
+                  "POBoxDeviatingCountry",
+                  "POBoxDeviatingCountry desc",
+                  "CareOfName",
+                  "CareOfName desc",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceTypeCode desc",
+                  "DeliveryServiceNumber",
+                  "DeliveryServiceNumber desc",
+                  "AddressTimeZone",
+                  "AddressTimeZone desc",
+                  "SecondaryRegionName",
+                  "SecondaryRegionName desc",
+                  "TertiaryRegionName",
+                  "TertiaryRegionName desc",
+                  "AddressRepresentationCode",
+                  "AddressRepresentationCode desc",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm1 desc",
+                  "AddressSearchTerm2",
+                  "AddressSearchTerm2 desc",
+                  "InternationalPhoneNumber",
+                  "InternationalPhoneNumber desc",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalMobilePhoneNumber desc",
+                  "InternationalFaxNumber",
+                  "InternationalFaxNumber desc",
+                  "EmailAddress",
+                  "EmailAddress desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "StreetName",
+                  "HouseNumber",
+                  "HouseNumberSupplementText",
+                  "CityName",
+                  "PostalCode",
+                  "Country",
+                  "Region",
+                  "CorrespondenceLanguage",
+                  "DistrictName",
+                  "VillageName",
+                  "CompanyPostalCode",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetPrefixName1",
+                  "StreetPrefixName2",
+                  "StreetSuffixName1",
+                  "StreetSuffixName2",
+                  "Building",
+                  "Floor",
+                  "RoomNumber",
+                  "FormOfAddress",
+                  "TaxJurisdiction",
+                  "TransportZone",
+                  "POBox",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxIsWithoutNumber",
+                  "POBoxPostalCode",
+                  "POBoxLobbyName",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingCountry",
+                  "CareOfName",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceNumber",
+                  "AddressTimeZone",
+                  "SecondaryRegionName",
+                  "TertiaryRegionName",
+                  "AddressRepresentationCode",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm2",
+                  "InternationalPhoneNumber",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalFaxNumber",
+                  "EmailAddress",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Bank",
+                  "_BankScriptVariant"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of BankAddressType",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BankAddress/{BankCountry}/{BankInternalID}": {
+      "parameters": [
+        {
+          "name": "BankCountry",
+          "in": "path",
+          "required": true,
+          "description": "Bank Country/Region Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        {
+          "name": "BankInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Bank Keys",
+          "schema": {
+            "type": "string",
+            "maxLength": 15
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from BankAddress by key",
+        "tags": [
+          "Bank Address"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "StreetName",
+                  "HouseNumber",
+                  "HouseNumberSupplementText",
+                  "CityName",
+                  "PostalCode",
+                  "Country",
+                  "Region",
+                  "CorrespondenceLanguage",
+                  "DistrictName",
+                  "VillageName",
+                  "CompanyPostalCode",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetPrefixName1",
+                  "StreetPrefixName2",
+                  "StreetSuffixName1",
+                  "StreetSuffixName2",
+                  "Building",
+                  "Floor",
+                  "RoomNumber",
+                  "FormOfAddress",
+                  "TaxJurisdiction",
+                  "TransportZone",
+                  "POBox",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxIsWithoutNumber",
+                  "POBoxPostalCode",
+                  "POBoxLobbyName",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingCountry",
+                  "CareOfName",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceNumber",
+                  "AddressTimeZone",
+                  "SecondaryRegionName",
+                  "TertiaryRegionName",
+                  "AddressRepresentationCode",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm2",
+                  "InternationalPhoneNumber",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalFaxNumber",
+                  "EmailAddress",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Bank",
+                  "_BankScriptVariant"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in BankAddress",
+        "tags": [
+          "Bank Address"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BankAddress/{BankCountry}/{BankInternalID}/_Bank": {
+      "parameters": [
+        {
+          "name": "BankCountry",
+          "in": "path",
+          "required": true,
+          "description": "Bank Country/Region Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        {
+          "name": "BankInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Bank Keys",
+          "schema": {
+            "type": "string",
+            "maxLength": 15
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _Bank",
+        "tags": [
+          "Bank Address",
+          "Bank"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "LongBankName",
+                  "LongBankBranch",
+                  "SWIFTCode",
+                  "BankNetworkGrouping",
+                  "IsMarkedForDeletion",
+                  "BankNumber",
+                  "BankCategory",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_BankAddress"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BankAddress/{BankCountry}/{BankInternalID}/_BankScriptVariant": {
+      "parameters": [
+        {
+          "name": "BankCountry",
+          "in": "path",
+          "required": true,
+          "description": "Bank Country/Region Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        {
+          "name": "BankInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Bank Keys",
+          "schema": {
+            "type": "string",
+            "maxLength": 15
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _BankScriptVariant",
+        "tags": [
+          "Bank Address",
+          "Scripted Addresses"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankCountry desc",
+                  "BankInternalID",
+                  "BankInternalID desc",
+                  "AddressRepresentationCode",
+                  "AddressRepresentationCode desc",
+                  "LongBankName",
+                  "LongBankName desc",
+                  "LongBankBranch",
+                  "LongBankBranch desc",
+                  "StreetName",
+                  "StreetName desc",
+                  "HouseNumber",
+                  "HouseNumber desc",
+                  "HouseNumberSupplementText",
+                  "HouseNumberSupplementText desc",
+                  "CityName",
+                  "CityName desc",
+                  "PostalCode",
+                  "PostalCode desc",
+                  "Country",
+                  "Country desc",
+                  "Region",
+                  "Region desc",
+                  "CorrespondenceLanguage",
+                  "CorrespondenceLanguage desc",
+                  "DistrictName",
+                  "DistrictName desc",
+                  "VillageName",
+                  "VillageName desc",
+                  "CompanyPostalCode",
+                  "CompanyPostalCode desc",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetAddrNonDeliverableReason desc",
+                  "StreetPrefixName1",
+                  "StreetPrefixName1 desc",
+                  "StreetPrefixName2",
+                  "StreetPrefixName2 desc",
+                  "StreetSuffixName1",
+                  "StreetSuffixName1 desc",
+                  "StreetSuffixName2",
+                  "StreetSuffixName2 desc",
+                  "Building",
+                  "Building desc",
+                  "Floor",
+                  "Floor desc",
+                  "RoomNumber",
+                  "RoomNumber desc",
+                  "FormOfAddress",
+                  "FormOfAddress desc",
+                  "TaxJurisdiction",
+                  "TaxJurisdiction desc",
+                  "TransportZone",
+                  "TransportZone desc",
+                  "POBox",
+                  "POBox desc",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxAddrNonDeliverableReason desc",
+                  "POBoxIsWithoutNumber",
+                  "POBoxIsWithoutNumber desc",
+                  "POBoxPostalCode",
+                  "POBoxPostalCode desc",
+                  "POBoxLobbyName",
+                  "POBoxLobbyName desc",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingCityName desc",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingRegion desc",
+                  "POBoxDeviatingCountry",
+                  "POBoxDeviatingCountry desc",
+                  "CareOfName",
+                  "CareOfName desc",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceTypeCode desc",
+                  "DeliveryServiceNumber",
+                  "DeliveryServiceNumber desc",
+                  "AddressTimeZone",
+                  "AddressTimeZone desc",
+                  "SecondaryRegionName",
+                  "SecondaryRegionName desc",
+                  "TertiaryRegionName",
+                  "TertiaryRegionName desc",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm1 desc",
+                  "AddressSearchTerm2",
+                  "AddressSearchTerm2 desc",
+                  "InternationalPhoneNumber",
+                  "InternationalPhoneNumber desc",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalMobilePhoneNumber desc",
+                  "InternationalFaxNumber",
+                  "InternationalFaxNumber desc",
+                  "EmailAddress",
+                  "EmailAddress desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "AddressRepresentationCode",
+                  "LongBankName",
+                  "LongBankBranch",
+                  "StreetName",
+                  "HouseNumber",
+                  "HouseNumberSupplementText",
+                  "CityName",
+                  "PostalCode",
+                  "Country",
+                  "Region",
+                  "CorrespondenceLanguage",
+                  "DistrictName",
+                  "VillageName",
+                  "CompanyPostalCode",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetPrefixName1",
+                  "StreetPrefixName2",
+                  "StreetSuffixName1",
+                  "StreetSuffixName2",
+                  "Building",
+                  "Floor",
+                  "RoomNumber",
+                  "FormOfAddress",
+                  "TaxJurisdiction",
+                  "TransportZone",
+                  "POBox",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxIsWithoutNumber",
+                  "POBoxPostalCode",
+                  "POBoxLobbyName",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingCountry",
+                  "CareOfName",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceNumber",
+                  "AddressTimeZone",
+                  "SecondaryRegionName",
+                  "TertiaryRegionName",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm2",
+                  "InternationalPhoneNumber",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalFaxNumber",
+                  "EmailAddress",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Bank",
+                  "_BankAddress"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of Bank_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to related _BankScriptVariant",
+        "tags": [
+          "Bank Address",
+          "Scripted Addresses"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BankScriptedAddress": {
+      "get": {
+        "summary": "Get entities from BankScriptedAddress",
+        "tags": [
+          "Scripted Addresses"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankCountry desc",
+                  "BankInternalID",
+                  "BankInternalID desc",
+                  "AddressRepresentationCode",
+                  "AddressRepresentationCode desc",
+                  "LongBankName",
+                  "LongBankName desc",
+                  "LongBankBranch",
+                  "LongBankBranch desc",
+                  "StreetName",
+                  "StreetName desc",
+                  "HouseNumber",
+                  "HouseNumber desc",
+                  "HouseNumberSupplementText",
+                  "HouseNumberSupplementText desc",
+                  "CityName",
+                  "CityName desc",
+                  "PostalCode",
+                  "PostalCode desc",
+                  "Country",
+                  "Country desc",
+                  "Region",
+                  "Region desc",
+                  "CorrespondenceLanguage",
+                  "CorrespondenceLanguage desc",
+                  "DistrictName",
+                  "DistrictName desc",
+                  "VillageName",
+                  "VillageName desc",
+                  "CompanyPostalCode",
+                  "CompanyPostalCode desc",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetAddrNonDeliverableReason desc",
+                  "StreetPrefixName1",
+                  "StreetPrefixName1 desc",
+                  "StreetPrefixName2",
+                  "StreetPrefixName2 desc",
+                  "StreetSuffixName1",
+                  "StreetSuffixName1 desc",
+                  "StreetSuffixName2",
+                  "StreetSuffixName2 desc",
+                  "Building",
+                  "Building desc",
+                  "Floor",
+                  "Floor desc",
+                  "RoomNumber",
+                  "RoomNumber desc",
+                  "FormOfAddress",
+                  "FormOfAddress desc",
+                  "TaxJurisdiction",
+                  "TaxJurisdiction desc",
+                  "TransportZone",
+                  "TransportZone desc",
+                  "POBox",
+                  "POBox desc",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxAddrNonDeliverableReason desc",
+                  "POBoxIsWithoutNumber",
+                  "POBoxIsWithoutNumber desc",
+                  "POBoxPostalCode",
+                  "POBoxPostalCode desc",
+                  "POBoxLobbyName",
+                  "POBoxLobbyName desc",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingCityName desc",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingRegion desc",
+                  "POBoxDeviatingCountry",
+                  "POBoxDeviatingCountry desc",
+                  "CareOfName",
+                  "CareOfName desc",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceTypeCode desc",
+                  "DeliveryServiceNumber",
+                  "DeliveryServiceNumber desc",
+                  "AddressTimeZone",
+                  "AddressTimeZone desc",
+                  "SecondaryRegionName",
+                  "SecondaryRegionName desc",
+                  "TertiaryRegionName",
+                  "TertiaryRegionName desc",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm1 desc",
+                  "AddressSearchTerm2",
+                  "AddressSearchTerm2 desc",
+                  "InternationalPhoneNumber",
+                  "InternationalPhoneNumber desc",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalMobilePhoneNumber desc",
+                  "InternationalFaxNumber",
+                  "InternationalFaxNumber desc",
+                  "EmailAddress",
+                  "EmailAddress desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "AddressRepresentationCode",
+                  "LongBankName",
+                  "LongBankBranch",
+                  "StreetName",
+                  "HouseNumber",
+                  "HouseNumberSupplementText",
+                  "CityName",
+                  "PostalCode",
+                  "Country",
+                  "Region",
+                  "CorrespondenceLanguage",
+                  "DistrictName",
+                  "VillageName",
+                  "CompanyPostalCode",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetPrefixName1",
+                  "StreetPrefixName2",
+                  "StreetSuffixName1",
+                  "StreetSuffixName2",
+                  "Building",
+                  "Floor",
+                  "RoomNumber",
+                  "FormOfAddress",
+                  "TaxJurisdiction",
+                  "TransportZone",
+                  "POBox",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxIsWithoutNumber",
+                  "POBoxPostalCode",
+                  "POBoxLobbyName",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingCountry",
+                  "CareOfName",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceNumber",
+                  "AddressTimeZone",
+                  "SecondaryRegionName",
+                  "TertiaryRegionName",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm2",
+                  "InternationalPhoneNumber",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalFaxNumber",
+                  "EmailAddress",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Bank",
+                  "_BankAddress"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of Bank_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BankScriptedAddress/{BankCountry}/{BankInternalID}/{AddressRepresentationCode}": {
+      "parameters": [
+        {
+          "name": "BankCountry",
+          "in": "path",
+          "required": true,
+          "description": "Bank Country/Region Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        {
+          "name": "BankInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Bank Keys",
+          "schema": {
+            "type": "string",
+            "maxLength": 15
+          }
+        },
+        {
+          "name": "AddressRepresentationCode",
+          "in": "path",
+          "required": true,
+          "description": "Version ID for International Addresses",
+          "schema": {
+            "type": "string",
+            "maxLength": 1
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from BankScriptedAddress by key",
+        "tags": [
+          "Scripted Addresses"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "AddressRepresentationCode",
+                  "LongBankName",
+                  "LongBankBranch",
+                  "StreetName",
+                  "HouseNumber",
+                  "HouseNumberSupplementText",
+                  "CityName",
+                  "PostalCode",
+                  "Country",
+                  "Region",
+                  "CorrespondenceLanguage",
+                  "DistrictName",
+                  "VillageName",
+                  "CompanyPostalCode",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetPrefixName1",
+                  "StreetPrefixName2",
+                  "StreetSuffixName1",
+                  "StreetSuffixName2",
+                  "Building",
+                  "Floor",
+                  "RoomNumber",
+                  "FormOfAddress",
+                  "TaxJurisdiction",
+                  "TransportZone",
+                  "POBox",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxIsWithoutNumber",
+                  "POBoxPostalCode",
+                  "POBoxLobbyName",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingCountry",
+                  "CareOfName",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceNumber",
+                  "AddressTimeZone",
+                  "SecondaryRegionName",
+                  "TertiaryRegionName",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm2",
+                  "InternationalPhoneNumber",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalFaxNumber",
+                  "EmailAddress",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Bank",
+                  "_BankAddress"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in BankScriptedAddress",
+        "tags": [
+          "Scripted Addresses"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete entity from BankScriptedAddress",
+        "tags": [
+          "Scripted Addresses"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BankScriptedAddress/{BankCountry}/{BankInternalID}/{AddressRepresentationCode}/_Bank": {
+      "parameters": [
+        {
+          "name": "BankCountry",
+          "in": "path",
+          "required": true,
+          "description": "Bank Country/Region Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        {
+          "name": "BankInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Bank Keys",
+          "schema": {
+            "type": "string",
+            "maxLength": 15
+          }
+        },
+        {
+          "name": "AddressRepresentationCode",
+          "in": "path",
+          "required": true,
+          "description": "Version ID for International Addresses",
+          "schema": {
+            "type": "string",
+            "maxLength": 1
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _Bank",
+        "tags": [
+          "Scripted Addresses",
+          "Bank"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "LongBankName",
+                  "LongBankBranch",
+                  "SWIFTCode",
+                  "BankNetworkGrouping",
+                  "IsMarkedForDeletion",
+                  "BankNumber",
+                  "BankCategory",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_BankAddress"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BankScriptedAddress/{BankCountry}/{BankInternalID}/{AddressRepresentationCode}/_BankAddress": {
+      "parameters": [
+        {
+          "name": "BankCountry",
+          "in": "path",
+          "required": true,
+          "description": "Bank Country/Region Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        {
+          "name": "BankInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Bank Keys",
+          "schema": {
+            "type": "string",
+            "maxLength": 15
+          }
+        },
+        {
+          "name": "AddressRepresentationCode",
+          "in": "path",
+          "required": true,
+          "description": "Version ID for International Addresses",
+          "schema": {
+            "type": "string",
+            "maxLength": 1
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _BankAddress",
+        "tags": [
+          "Scripted Addresses",
+          "Bank Address"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "BankCountry",
+                  "BankInternalID",
+                  "StreetName",
+                  "HouseNumber",
+                  "HouseNumberSupplementText",
+                  "CityName",
+                  "PostalCode",
+                  "Country",
+                  "Region",
+                  "CorrespondenceLanguage",
+                  "DistrictName",
+                  "VillageName",
+                  "CompanyPostalCode",
+                  "StreetAddrNonDeliverableReason",
+                  "StreetPrefixName1",
+                  "StreetPrefixName2",
+                  "StreetSuffixName1",
+                  "StreetSuffixName2",
+                  "Building",
+                  "Floor",
+                  "RoomNumber",
+                  "FormOfAddress",
+                  "TaxJurisdiction",
+                  "TransportZone",
+                  "POBox",
+                  "POBoxAddrNonDeliverableReason",
+                  "POBoxIsWithoutNumber",
+                  "POBoxPostalCode",
+                  "POBoxLobbyName",
+                  "POBoxDeviatingCityName",
+                  "POBoxDeviatingRegion",
+                  "POBoxDeviatingCountry",
+                  "CareOfName",
+                  "DeliveryServiceTypeCode",
+                  "DeliveryServiceNumber",
+                  "AddressTimeZone",
+                  "SecondaryRegionName",
+                  "TertiaryRegionName",
+                  "AddressRepresentationCode",
+                  "AddressSearchTerm1",
+                  "AddressSearchTerm2",
+                  "InternationalPhoneNumber",
+                  "InternationalMobilePhoneNumber",
+                  "InternationalFaxNumber",
+                  "EmailAddress",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Bank",
+                  "_BankScriptVariant"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET Bank HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType": {
+        "type": "object",
+        "properties": {
+          "BankCountry": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Bank Country/Region",
+            "description": "Bank Country/Region Key"
+          },
+          "BankInternalID": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Bank Key",
+            "description": "Bank Keys"
+          },
+          "LongBankName": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Name"
+          },
+          "LongBankBranch": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Branch"
+          },
+          "SWIFTCode": {
+            "type": "string",
+            "maxLength": 11,
+            "title": "SWIFT/BIC",
+            "description": "SWIFT/BIC for International Payments"
+          },
+          "BankNetworkGrouping": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Bank Group",
+            "description": "Bank Group (Bank Network)"
+          },
+          "IsMarkedForDeletion": {
+            "type": "boolean",
+            "title": "Deletion Indicator"
+          },
+          "BankNumber": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Bank Number"
+          },
+          "BankCategory": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Internal Bank Category"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message"
+            }
+          },
+          "_BankAddress": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType"
+          }
+        },
+        "title": "Bank"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType-create": {
+        "type": "object",
+        "properties": {
+          "BankCountry": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Bank Country/Region",
+            "description": "Bank Country/Region Key"
+          },
+          "BankInternalID": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Bank Key",
+            "description": "Bank Keys"
+          },
+          "LongBankName": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Name"
+          },
+          "LongBankBranch": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Branch"
+          },
+          "SWIFTCode": {
+            "type": "string",
+            "maxLength": 11,
+            "title": "SWIFT/BIC",
+            "description": "SWIFT/BIC for International Payments"
+          },
+          "BankNetworkGrouping": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Bank Group",
+            "description": "Bank Group (Bank Network)"
+          },
+          "IsMarkedForDeletion": {
+            "type": "boolean",
+            "title": "Deletion Indicator"
+          },
+          "BankNumber": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Bank Number"
+          },
+          "BankCategory": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Internal Bank Category"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message-create"
+            }
+          },
+          "_BankAddress": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType-create"
+          }
+        },
+        "required": [
+          "BankCountry",
+          "BankInternalID",
+          "LongBankName"
+        ],
+        "title": "Bank (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType-update": {
+        "type": "object",
+        "properties": {
+          "LongBankName": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Name"
+          },
+          "LongBankBranch": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Branch"
+          },
+          "SWIFTCode": {
+            "type": "string",
+            "maxLength": 11,
+            "title": "SWIFT/BIC",
+            "description": "SWIFT/BIC for International Payments"
+          },
+          "BankNetworkGrouping": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Bank Group",
+            "description": "Bank Group (Bank Network)"
+          },
+          "IsMarkedForDeletion": {
+            "type": "boolean",
+            "title": "Deletion Indicator"
+          },
+          "BankNumber": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Bank Number"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message-update"
+            }
+          }
+        },
+        "title": "Bank (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type": {
+        "type": "object",
+        "properties": {
+          "BankCountry": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Bank Country/Region",
+            "description": "Bank Country/Region Key"
+          },
+          "BankInternalID": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Bank Key",
+            "description": "Bank Keys"
+          },
+          "AddressRepresentationCode": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Address Version",
+            "description": "Version ID for International Addresses"
+          },
+          "LongBankName": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Name"
+          },
+          "LongBankBranch": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Branch"
+          },
+          "StreetName": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Street"
+          },
+          "HouseNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "House Number"
+          },
+          "HouseNumberSupplementText": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Supplement",
+            "description": "House number supplement"
+          },
+          "CityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "City"
+          },
+          "PostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Postal Code",
+            "description": "City Postal Code"
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "Region": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Region",
+            "description": "Region (State, Province, County)"
+          },
+          "CorrespondenceLanguage": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "DistrictName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "District"
+          },
+          "VillageName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Different City",
+            "description": "City (different from postal city)"
+          },
+          "CompanyPostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Company Postal Code",
+            "description": "Company Postal Code (for Large Customers)"
+          },
+          "StreetAddrNonDeliverableReason": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Undeliverable",
+            "description": "Street Address Undeliverable Flag"
+          },
+          "StreetPrefixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 2"
+          },
+          "StreetPrefixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 3"
+          },
+          "StreetSuffixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 4"
+          },
+          "StreetSuffixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 5"
+          },
+          "Building": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Building Code",
+            "description": "Building (Number or Code)"
+          },
+          "Floor": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Floor",
+            "description": "Floor in building"
+          },
+          "RoomNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Room Number",
+            "description": "Room or Apartment Number"
+          },
+          "FormOfAddress": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Title Key",
+            "description": "Form-of-Address Key"
+          },
+          "TaxJurisdiction": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Tax Jurisdiction"
+          },
+          "TransportZone": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Transportation Zone",
+            "description": "Transportation zone to or from which the goods are delivered"
+          },
+          "POBox": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "PO Box"
+          },
+          "POBoxAddrNonDeliverableReason": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Undeliverable",
+            "description": "PO Box Address Undeliverable Flag"
+          },
+          "POBoxIsWithoutNumber": {
+            "type": "boolean",
+            "title": "PO Box w/o No.",
+            "description": "Flag: PO Box Without Number"
+          },
+          "POBoxPostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "PO Box Postal Code"
+          },
+          "POBoxLobbyName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box Lobby"
+          },
+          "POBoxDeviatingCityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box City",
+            "description": "PO Box city"
+          },
+          "POBoxDeviatingRegion": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "PO Box Region",
+            "description": "Region for PO Box (Country/Region, State, Province, ...)"
+          },
+          "POBoxDeviatingCountry": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "PO Box Ctry/Region",
+            "description": "PO Box of Country/Region"
+          },
+          "CareOfName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "c/o",
+            "description": "c/o name"
+          },
+          "DeliveryServiceTypeCode": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Delvry Serv Type",
+            "description": "Type of Delivery Service"
+          },
+          "DeliveryServiceNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Delivery Service No.",
+            "description": "Number of Delivery Service"
+          },
+          "AddressTimeZone": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Time Zone",
+            "description": "Address Time Zone"
+          },
+          "SecondaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "County"
+          },
+          "TertiaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Township"
+          },
+          "AddressSearchTerm1": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 1"
+          },
+          "AddressSearchTerm2": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 2"
+          },
+          "InternationalPhoneNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Telephone Number",
+            "description": "Complete Number: Dialing Code+Number+Extension"
+          },
+          "InternationalMobilePhoneNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Mobile"
+          },
+          "InternationalFaxNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Fax Number",
+            "description": "Complete Number: Dialing Code+Number+Extension"
+          },
+          "EmailAddress": {
+            "type": "string",
+            "maxLength": 241,
+            "title": "Email Address"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message"
+            }
+          },
+          "_Bank": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType"
+              }
+            ]
+          },
+          "_BankAddress": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType"
+          }
+        },
+        "title": "Scripted Addresses"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type-create": {
+        "type": "object",
+        "properties": {
+          "AddressRepresentationCode": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Address Version",
+            "description": "Version ID for International Addresses"
+          },
+          "LongBankName": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Name"
+          },
+          "LongBankBranch": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Branch"
+          },
+          "StreetName": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Street"
+          },
+          "HouseNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "House Number"
+          },
+          "HouseNumberSupplementText": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Supplement",
+            "description": "House number supplement"
+          },
+          "CityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "City"
+          },
+          "DistrictName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "District"
+          },
+          "VillageName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Different City",
+            "description": "City (different from postal city)"
+          },
+          "StreetPrefixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 2"
+          },
+          "StreetPrefixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 3"
+          },
+          "StreetSuffixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 4"
+          },
+          "StreetSuffixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 5"
+          },
+          "Building": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Building Code",
+            "description": "Building (Number or Code)"
+          },
+          "Floor": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Floor",
+            "description": "Floor in building"
+          },
+          "RoomNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Room Number",
+            "description": "Room or Apartment Number"
+          },
+          "FormOfAddress": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Title Key",
+            "description": "Form-of-Address Key"
+          },
+          "POBoxLobbyName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box Lobby"
+          },
+          "POBoxDeviatingCityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box City",
+            "description": "PO Box city"
+          },
+          "CareOfName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "c/o",
+            "description": "c/o name"
+          },
+          "SecondaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "County"
+          },
+          "TertiaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Township"
+          },
+          "AddressSearchTerm1": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 1"
+          },
+          "AddressSearchTerm2": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 2"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message-create"
+            }
+          },
+          "_Bank": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType-create"
+              }
+            ]
+          },
+          "_BankAddress": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType-create"
+          }
+        },
+        "required": [
+          "AddressRepresentationCode"
+        ],
+        "title": "Scripted Addresses (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type-update": {
+        "type": "object",
+        "properties": {
+          "LongBankName": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Name"
+          },
+          "LongBankBranch": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Bank Branch"
+          },
+          "StreetName": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Street"
+          },
+          "HouseNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "House Number"
+          },
+          "HouseNumberSupplementText": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Supplement",
+            "description": "House number supplement"
+          },
+          "CityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "City"
+          },
+          "DistrictName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "District"
+          },
+          "VillageName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Different City",
+            "description": "City (different from postal city)"
+          },
+          "StreetPrefixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 2"
+          },
+          "StreetPrefixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 3"
+          },
+          "StreetSuffixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 4"
+          },
+          "StreetSuffixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 5"
+          },
+          "Building": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Building Code",
+            "description": "Building (Number or Code)"
+          },
+          "Floor": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Floor",
+            "description": "Floor in building"
+          },
+          "RoomNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Room Number",
+            "description": "Room or Apartment Number"
+          },
+          "FormOfAddress": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Title Key",
+            "description": "Form-of-Address Key"
+          },
+          "POBoxLobbyName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box Lobby"
+          },
+          "POBoxDeviatingCityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box City",
+            "description": "PO Box city"
+          },
+          "CareOfName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "c/o",
+            "description": "c/o name"
+          },
+          "SecondaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "County"
+          },
+          "TertiaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Township"
+          },
+          "AddressSearchTerm1": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 1"
+          },
+          "AddressSearchTerm2": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 2"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message-update"
+            }
+          }
+        },
+        "title": "Scripted Addresses (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType": {
+        "type": "object",
+        "properties": {
+          "BankCountry": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Bank Country/Region",
+            "description": "Bank Country/Region Key"
+          },
+          "BankInternalID": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Bank Key",
+            "description": "Bank Keys"
+          },
+          "StreetName": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Street"
+          },
+          "HouseNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "House Number"
+          },
+          "HouseNumberSupplementText": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Supplement",
+            "description": "House number supplement"
+          },
+          "CityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "City"
+          },
+          "PostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Postal Code",
+            "description": "City Postal Code"
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "Region": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Region",
+            "description": "Region (State, Province, County)"
+          },
+          "CorrespondenceLanguage": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "DistrictName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "District"
+          },
+          "VillageName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Different City",
+            "description": "City (different from postal city)"
+          },
+          "CompanyPostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Company Postal Code",
+            "description": "Company Postal Code (for Large Customers)"
+          },
+          "StreetAddrNonDeliverableReason": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Undeliverable",
+            "description": "Street Address Undeliverable Flag"
+          },
+          "StreetPrefixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 2"
+          },
+          "StreetPrefixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 3"
+          },
+          "StreetSuffixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 4"
+          },
+          "StreetSuffixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 5"
+          },
+          "Building": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Building Code",
+            "description": "Building (Number or Code)"
+          },
+          "Floor": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Floor",
+            "description": "Floor in building"
+          },
+          "RoomNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Room Number",
+            "description": "Room or Apartment Number"
+          },
+          "FormOfAddress": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Title Key",
+            "description": "Form-of-Address Key"
+          },
+          "TaxJurisdiction": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Tax Jurisdiction"
+          },
+          "TransportZone": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Transportation Zone",
+            "description": "Transportation zone to or from which the goods are delivered"
+          },
+          "POBox": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "PO Box"
+          },
+          "POBoxAddrNonDeliverableReason": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Undeliverable",
+            "description": "PO Box Address Undeliverable Flag"
+          },
+          "POBoxIsWithoutNumber": {
+            "type": "boolean",
+            "title": "PO Box w/o No.",
+            "description": "Flag: PO Box Without Number"
+          },
+          "POBoxPostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "PO Box Postal Code"
+          },
+          "POBoxLobbyName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box Lobby"
+          },
+          "POBoxDeviatingCityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box City",
+            "description": "PO Box city"
+          },
+          "POBoxDeviatingRegion": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "PO Box Region",
+            "description": "Region for PO Box (Country/Region, State, Province, ...)"
+          },
+          "POBoxDeviatingCountry": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "PO Box Ctry/Region",
+            "description": "PO Box of Country/Region"
+          },
+          "CareOfName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "c/o",
+            "description": "c/o name"
+          },
+          "DeliveryServiceTypeCode": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Delvry Serv Type",
+            "description": "Type of Delivery Service"
+          },
+          "DeliveryServiceNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Delivery Service No.",
+            "description": "Number of Delivery Service"
+          },
+          "AddressTimeZone": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Time Zone",
+            "description": "Address Time Zone"
+          },
+          "SecondaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "County"
+          },
+          "TertiaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Township"
+          },
+          "AddressRepresentationCode": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Address Version",
+            "description": "Version ID for International Addresses"
+          },
+          "AddressSearchTerm1": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 1"
+          },
+          "AddressSearchTerm2": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 2"
+          },
+          "InternationalPhoneNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Telephone Number",
+            "description": "Complete Number: Dialing Code+Number+Extension"
+          },
+          "InternationalMobilePhoneNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Mobile"
+          },
+          "InternationalFaxNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Fax Number",
+            "description": "Complete Number: Dialing Code+Number+Extension"
+          },
+          "EmailAddress": {
+            "type": "string",
+            "maxLength": 241,
+            "title": "Email Address"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message"
+            }
+          },
+          "_Bank": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType"
+          },
+          "_BankScriptVariant": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type"
+            }
+          }
+        },
+        "title": "Bank Address"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType-create": {
+        "type": "object",
+        "properties": {
+          "BankCountry": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Bank Country/Region",
+            "description": "Bank Country/Region Key"
+          },
+          "BankInternalID": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Bank Key",
+            "description": "Bank Keys"
+          },
+          "StreetName": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Street"
+          },
+          "HouseNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "House Number"
+          },
+          "HouseNumberSupplementText": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Supplement",
+            "description": "House number supplement"
+          },
+          "CityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "City"
+          },
+          "PostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Postal Code",
+            "description": "City Postal Code"
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "Region": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Region",
+            "description": "Region (State, Province, County)"
+          },
+          "CorrespondenceLanguage": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "DistrictName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "District"
+          },
+          "VillageName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Different City",
+            "description": "City (different from postal city)"
+          },
+          "CompanyPostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Company Postal Code",
+            "description": "Company Postal Code (for Large Customers)"
+          },
+          "StreetAddrNonDeliverableReason": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Undeliverable",
+            "description": "Street Address Undeliverable Flag"
+          },
+          "StreetPrefixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 2"
+          },
+          "StreetPrefixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 3"
+          },
+          "StreetSuffixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 4"
+          },
+          "StreetSuffixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 5"
+          },
+          "Building": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Building Code",
+            "description": "Building (Number or Code)"
+          },
+          "Floor": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Floor",
+            "description": "Floor in building"
+          },
+          "RoomNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Room Number",
+            "description": "Room or Apartment Number"
+          },
+          "FormOfAddress": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Title Key",
+            "description": "Form-of-Address Key"
+          },
+          "TaxJurisdiction": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Tax Jurisdiction"
+          },
+          "TransportZone": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Transportation Zone",
+            "description": "Transportation zone to or from which the goods are delivered"
+          },
+          "POBox": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "PO Box"
+          },
+          "POBoxAddrNonDeliverableReason": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Undeliverable",
+            "description": "PO Box Address Undeliverable Flag"
+          },
+          "POBoxIsWithoutNumber": {
+            "type": "boolean",
+            "title": "PO Box w/o No.",
+            "description": "Flag: PO Box Without Number"
+          },
+          "POBoxPostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "PO Box Postal Code"
+          },
+          "POBoxLobbyName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box Lobby"
+          },
+          "POBoxDeviatingCityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box City",
+            "description": "PO Box city"
+          },
+          "POBoxDeviatingRegion": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "PO Box Region",
+            "description": "Region for PO Box (Country/Region, State, Province, ...)"
+          },
+          "POBoxDeviatingCountry": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "PO Box Ctry/Region",
+            "description": "PO Box of Country/Region"
+          },
+          "CareOfName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "c/o",
+            "description": "c/o name"
+          },
+          "DeliveryServiceTypeCode": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Delvry Serv Type",
+            "description": "Type of Delivery Service"
+          },
+          "DeliveryServiceNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Delivery Service No.",
+            "description": "Number of Delivery Service"
+          },
+          "AddressTimeZone": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Time Zone",
+            "description": "Address Time Zone"
+          },
+          "SecondaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "County"
+          },
+          "TertiaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Township"
+          },
+          "AddressSearchTerm1": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 1"
+          },
+          "AddressSearchTerm2": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 2"
+          },
+          "InternationalPhoneNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Telephone Number",
+            "description": "Complete Number: Dialing Code+Number+Extension"
+          },
+          "InternationalMobilePhoneNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Mobile"
+          },
+          "InternationalFaxNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Fax Number",
+            "description": "Complete Number: Dialing Code+Number+Extension"
+          },
+          "EmailAddress": {
+            "type": "string",
+            "maxLength": 241,
+            "title": "Email Address"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message-create"
+            }
+          },
+          "_Bank": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankType-create"
+          },
+          "_BankScriptVariant": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.Bank_Type-create"
+            }
+          }
+        },
+        "required": [
+          "BankCountry",
+          "BankInternalID"
+        ],
+        "title": "Bank Address (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.BankAddressType-update": {
+        "type": "object",
+        "properties": {
+          "StreetName": {
+            "type": "string",
+            "maxLength": 60,
+            "title": "Street"
+          },
+          "HouseNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "House Number"
+          },
+          "HouseNumberSupplementText": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Supplement",
+            "description": "House number supplement"
+          },
+          "CityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "City"
+          },
+          "PostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Postal Code",
+            "description": "City Postal Code"
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "Region": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Region",
+            "description": "Region (State, Province, County)"
+          },
+          "CorrespondenceLanguage": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "DistrictName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "District"
+          },
+          "VillageName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Different City",
+            "description": "City (different from postal city)"
+          },
+          "CompanyPostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Company Postal Code",
+            "description": "Company Postal Code (for Large Customers)"
+          },
+          "StreetAddrNonDeliverableReason": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Undeliverable",
+            "description": "Street Address Undeliverable Flag"
+          },
+          "StreetPrefixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 2"
+          },
+          "StreetPrefixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 3"
+          },
+          "StreetSuffixName1": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 4"
+          },
+          "StreetSuffixName2": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Street 5"
+          },
+          "Building": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Building Code",
+            "description": "Building (Number or Code)"
+          },
+          "Floor": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Floor",
+            "description": "Floor in building"
+          },
+          "RoomNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Room Number",
+            "description": "Room or Apartment Number"
+          },
+          "FormOfAddress": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Title Key",
+            "description": "Form-of-Address Key"
+          },
+          "TaxJurisdiction": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Tax Jurisdiction"
+          },
+          "TransportZone": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Transportation Zone",
+            "description": "Transportation zone to or from which the goods are delivered"
+          },
+          "POBox": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "PO Box"
+          },
+          "POBoxAddrNonDeliverableReason": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Undeliverable",
+            "description": "PO Box Address Undeliverable Flag"
+          },
+          "POBoxIsWithoutNumber": {
+            "type": "boolean",
+            "title": "PO Box w/o No.",
+            "description": "Flag: PO Box Without Number"
+          },
+          "POBoxPostalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "PO Box Postal Code"
+          },
+          "POBoxLobbyName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box Lobby"
+          },
+          "POBoxDeviatingCityName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "PO Box City",
+            "description": "PO Box city"
+          },
+          "POBoxDeviatingRegion": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "PO Box Region",
+            "description": "Region for PO Box (Country/Region, State, Province, ...)"
+          },
+          "POBoxDeviatingCountry": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "PO Box Ctry/Region",
+            "description": "PO Box of Country/Region"
+          },
+          "CareOfName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "c/o",
+            "description": "c/o name"
+          },
+          "DeliveryServiceTypeCode": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Delvry Serv Type",
+            "description": "Type of Delivery Service"
+          },
+          "DeliveryServiceNumber": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Delivery Service No.",
+            "description": "Number of Delivery Service"
+          },
+          "AddressTimeZone": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Time Zone",
+            "description": "Address Time Zone"
+          },
+          "SecondaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "County"
+          },
+          "TertiaryRegionName": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Township"
+          },
+          "AddressSearchTerm1": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 1"
+          },
+          "AddressSearchTerm2": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Search Term 2"
+          },
+          "InternationalPhoneNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Telephone Number",
+            "description": "Complete Number: Dialing Code+Number+Extension"
+          },
+          "InternationalMobilePhoneNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Mobile"
+          },
+          "InternationalFaxNumber": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Fax Number",
+            "description": "Complete Number: Dialing Code+Number+Extension"
+          },
+          "EmailAddress": {
+            "type": "string",
+            "maxLength": 241,
+            "title": "Email Address"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message-update"
+            }
+          }
+        },
+        "title": "Bank Address (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalTargets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transition": {
+            "type": "boolean"
+          },
+          "numericSeverity": {
+            "type": "integer",
+            "format": "uint8"
+          },
+          "longtextUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "title": "SAP__Message"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message-create": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalTargets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transition": {
+            "type": "boolean"
+          },
+          "numericSeverity": {
+            "type": "integer",
+            "format": "uint8"
+          },
+          "longtextUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "title": "SAP__Message (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_bank_3.v0001.SAP__Message-update": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalTargets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transition": {
+            "type": "boolean"
+          },
+          "numericSeverity": {
+            "type": "integer",
+            "format": "uint8"
+          },
+          "longtextUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "title": "SAP__Message (for update)"
+      },
+      "count": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "description": "The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "target": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)",
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "search": {
+        "name": "$search",
+        "in": "query",
+        "description": "Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {
+              "OV4:API_BANK": ""
+            },
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": [
+        "OV4:API_BANK"
+      ]
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

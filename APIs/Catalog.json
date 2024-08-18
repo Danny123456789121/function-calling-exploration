@@ -1,0 +1,670 @@
+{
+    "swagger": "2.0",
+    "x-odata-version": "4.0",
+    "x-sap-api-type": "ODATAV4",
+    "x-sap-shortText": "Allows you to navigate and search spaces and assets from SAP Data Warehouse Cloud",
+    "x-servers": [{
+        "url": "https://{tenant_name}.{data_center}.hcs.cloud.sap/api",
+        "description": "SAP Data Warehouse Cloud Consumption APIs",
+        "templates": {
+            "tenant_name": {
+                "description": "SAP Data Warehouse Cloud Customer Tenant Name",
+                "default": "your_tenant_name"
+            },
+            "data_center": {
+                "description": "SAP Data Warehouse Cloud",
+                "enum": ["us10", "eu10", "eu11", "eu11", "ap10", "jp10", "us20", "eu20"],
+                "default": "eu10"
+            }
+        }
+    }],
+    "info": {
+        "version": "1.0.0",
+        "title": "Catalog",
+        "description": "The SAP Data Warehouse Cloud Consumption APIs - Catalog can be used to navigate and search spaces and assets via APIs following the OData version 4 standard."
+    },
+    "host": "hostname",
+    "schemes": [
+        "https"
+    ],
+    "tags": [
+        {
+        "name": "SAP Data Warehouse Cloud Consumption - Catalog"
+        }
+    ],
+    "basePath": "/api",
+    "paths": {
+      "/v1/dwc/catalog/$metadata" : {
+        "get" : {
+          "tags" : [ "SAP Data Warehouse Cloud Consumption - Catalog" ],
+          "summary" : "Returns the metadata in CSDL XML Representation of the service containing the definitions of spaces and assets.",
+          "description" : "You can use the following request to obtain the metadata definition of the SAP Data Warehouse catalog OData entities in the CSDL XML format This metadata will describe all available entities, fields and association between those entities in the .<br>For further details refer to [OData Common Schema Definition Language (CSDL) XML Representation](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html)",
+          "operationId" : "getMetadata",
+          "produces" : [ "application/xml" ],
+          "parameters" : [ ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation"
+            },
+            "400" : {
+              "description" : "Bad request; please refer to documentation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "403" : {
+              "description" : "Authenticated user is not permitted to perform the requested operation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "404" : {
+              "description" : "Resource not found",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "500" : {
+              "description" : "A server error has occurred",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/v1/dwc/catalog" : {
+        "get" : {
+          "tags" : [ "SAP Data Warehouse Cloud Consumption - Catalog" ],
+          "summary" : "Returns list of available OData entities (spaces and assets)",
+          "description" : "You can use the following request to list all available SAP Data Warehouse catalog OData entities.<br>This is the root URL that should be used when creating OData connections that intent to list catalog definitions.",
+          "operationId" : "getCatalogResources",
+          "produces" : [ "application/json" ],
+          "parameters" : [ ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation",
+              "schema" : {
+                "$ref" : "#/definitions/ODataServiceV1"
+              }
+            },
+            "400" : {
+              "description" : "Bad request; please refer to documentation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "403" : {
+              "description" : "Authenticated user is not permitted to perform the requested operation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "404" : {
+              "description" : "Resource not found",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "500" : {
+              "description" : "A server error has occurred",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/v1/dwc/catalog/assets" : {
+        "get" : {
+          "tags" : [ "SAP Data Warehouse Cloud Consumption - Catalog" ],
+          "summary" : "List all available assets",
+          "description" : "You can use the following request to obtain an array containing the assets properties belonging to any space the signed in business user has access to.",
+          "operationId" : "getAssets",
+          "produces" : [ "application/json" ],
+          "parameters" : [ ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation",
+              "schema" : {
+                "$ref" : "#/definitions/ODataAssetsListV1"
+              }
+            },
+            "400" : {
+              "description" : "Bad request; please refer to documentation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "403" : {
+              "description" : "Authenticated user is not permitted to perform the requested operation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "404" : {
+              "description" : "Resource not found",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "500" : {
+              "description" : "A server error has occurred",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/v1/dwc/catalog/assets({assetCompoundId})" : {
+        "get" : {
+          "tags" : [ "SAP Data Warehouse Cloud Consumption - Catalog" ],
+          "summary" : "Get one specific asset by its compound key",
+          "description" : "You can use the following request for one specific asset belonging to the a certain space. Using the compound key assetId + spaceId (spaceName='{spaceId}',name='{assetId}'). <br>The response contains the link to the consumption service for this asset, which should be used for querying its data",
+          "operationId" : "getAssetById",
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "name" : "assetCompoundId",
+            "in" : "path",
+            "description" : "SAP Data Warehouse Cloud Space Id & Asset Id - (spaceName='{spaceId}',name='{assetId}')",
+            "required" : true,
+            "type" : "string"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation",
+              "schema" : {
+                "$ref" : "#/definitions/ODataAssetV1"
+              }
+            },
+            "400" : {
+              "description" : "Bad request; please refer to documentation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "403" : {
+              "description" : "Authenticated user is not permitted to perform the requested operation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "404" : {
+              "description" : "Resource not found",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "500" : {
+              "description" : "A server error has occurred",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/v1/dwc/catalog/spaces" : {
+        "get" : {
+          "tags" : [ "SAP Data Warehouse Cloud Consumption - Catalog" ],
+          "summary" : "List all available spaces",
+          "description" : "You can use the following request to obtain an array containing the spaces properties the signed in business user has access to.",
+          "operationId" : "getSpaces",
+          "produces" : [ "application/json" ],
+          "parameters" : [ ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation",
+              "schema" : {
+                "$ref" : "#/definitions/ODataSpacesListV1"
+              }
+            },
+            "400" : {
+              "description" : "Bad request; please refer to documentation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "403" : {
+              "description" : "Authenticated user is not permitted to perform the requested operation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "404" : {
+              "description" : "Resource not found",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "500" : {
+              "description" : "A server error has occurred",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/v1/dwc/catalog/spaces('{spaceId}')" : {
+        "get" : {
+          "tags" : [ "SAP Data Warehouse Cloud Consumption - Catalog" ],
+          "summary" : "Get one specific space by its ID",
+          "description" : "You can use the following request to obtain the details about one specific space by the spaceId parameter. The signed in business user should have access to this space.",
+          "operationId" : "getSpaceById",
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "name" : "spaceId",
+            "in" : "path",
+            "description" : "The space technical title, which is used as space ID",
+            "required" : true,
+            "type" : "string"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation",
+              "schema" : {
+                "$ref" : "#/definitions/ODataSpaceV1"
+              }
+            },
+            "400" : {
+              "description" : "Bad request; please refer to documentation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "403" : {
+              "description" : "Authenticated user is not permitted to perform the requested operation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "404" : {
+              "description" : "Resource not found",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "500" : {
+              "description" : "A server error has occurred",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/v1/dwc/catalog/spaces('{spaceId}')/assets" : {
+        "get" : {
+          "tags" : [ "SAP Data Warehouse Cloud Consumption - Catalog" ],
+          "summary" : "List all available assets in a space",
+          "description" : "You can use the following request to obtain an array containing the assets properties belonging to one specific space. The signed in business user has access to the space.",
+          "operationId" : "getAssetsBySpace",
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "name" : "spaceId",
+            "in" : "path",
+            "description" : "The space technical title, which is used as space ID",
+            "required" : true,
+            "type" : "string"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation",
+              "schema" : {
+                "$ref" : "#/definitions/ODataAssetsListV1"
+              }
+            },
+            "400" : {
+              "description" : "Bad request; please refer to documentation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "403" : {
+              "description" : "Authenticated user is not permitted to perform the requested operation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "404" : {
+              "description" : "Resource not found",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "500" : {
+              "description" : "A server error has occurred",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/v1/dwc/catalog/spaces('{spaceId}')/assets('{assetId}')" : {
+        "get" : {
+          "tags" : [ "SAP Data Warehouse Cloud Consumption - Catalog" ],
+          "summary" : "Get one specific asset",
+          "description" : "You can use the following request for one specific asset belonging to the a certain space. The response contains the link to the consumption service for this asset, which should be used for querying its data",
+          "operationId" : "getAssetIdFromSpace",
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "name" : "spaceId",
+            "in" : "path",
+            "description" : "The space technical title, which is used as space ID",
+            "required" : true,
+            "type" : "string"
+          }, {
+            "name" : "assetId",
+            "in" : "path",
+            "description" : "The asset technical title, which is used as asset ID",
+            "required" : true,
+            "type" : "string"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation",
+              "schema" : {
+                "$ref" : "#/definitions/ODataAssetV1"
+              }
+            },
+            "400" : {
+              "description" : "Bad request; please refer to documentation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "403" : {
+              "description" : "Authenticated user is not permitted to perform the requested operation",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "404" : {
+              "description" : "Resource not found",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            },
+            "500" : {
+              "description" : "A server error has occurred",
+              "schema" : {
+                "$ref" : "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+        "oauth2": {
+          "description": "You need to configure your SAP Data Warehouse Cloud system's public APIs to be consumed via OAuth 2.0 clients. SAML bearer tokens are used to access OAuth 2.0 resources. The authorization and token URL are required when setting up new clients.",
+          "type": "oauth2",
+          "flow": "accessCode",
+          "authorizationUrl": "https://{tenant_name}.{data_center}.hcs.cloud.sap/oauth/authorize",
+          "tokenUrl": "https://{tenant_name}.{data_center}.hcs.cloud.sap/oauth/token",
+          "scopes": {
+            "default": "Default scope"
+          }
+        }
+      },
+    "parameters": {
+        "limitParam": {
+            "name": "limit",
+            "in": "query",
+            "description": "Limits the number of returned results",
+            "required": false,
+            "type": "number",
+            "format": "int32"
+        },
+        "offsetParam": {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset to the no of parameters to skip",
+            "required": false,
+            "type": "number",
+            "format": "int32"
+        }
+    },
+    "definitions": {
+      "ODataService": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the entity type of OData service"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL path to be appended to the current path in order to access the entity resource route"
+          }
+        },
+        "description": "SAP Data Warehouse Cloud OData Service"
+      },
+      "ODataServiceV1": {
+        "type": "object",
+        "properties": {
+          "odataContext": {
+            "type": "string"
+          },
+          "@odata.context": {
+            "type": "string",
+            "description": "The odata.context annotation returns the context URL (see [OData-Protocol]) for the payload"
+          },
+          "@odata.metadataEtag": {
+            "type": "string",
+            "description": " The odata.metadataEtag annotation MAY appear in a response in order to specify the entity tag (ETag) that can be used to determine the version of the metadata of the response."
+          },
+          "value": {
+            "type": "array",
+            "description": "List of available OData Services",
+            "items": {
+              "$ref": "#/definitions/ODataService"
+            }
+          }
+        },
+        "description": "Lists the OData entities types available"
+      },
+      "AssetEntityV1": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Technical name of the SAP Data Warehouse Cloud asset"
+          },
+          "spaceName": {
+            "type": "string",
+            "description": "Technical name of the SAP Data Warehouse Cloud space to which the asset belongs to"
+          },
+          "label": {
+            "type": "string",
+            "description": "User friendly label of the SAP Data Warehouse Cloud asset"
+          },
+          "assetRelationalMetadataUrl": {
+            "type": "string",
+            "description": "URL to the asset metadata information for relational (row-by-row) access pattern"
+          },
+          "assetRelationalDataUrl": {
+            "type": "string",
+            "description": "URL to the OData service which exposes the asset information for relational (row-by-row) access pattern"
+          },
+          "assetAnalyticalMetadataUrl": {
+            "type": "string",
+            "description": "URL to the asset metadata information for analytical (aggregated) access pattern. Null if analytical consumption is not available"
+          },
+          "assetAnalyticalDataUrl": {
+            "type": "string",
+            "description": "URL to the OData service which exposes the asset information for analytical (aggregated) access pattern. Null if analytical consumption is not available"
+          },
+          "supportsAnalyticalQueries": {
+            "type": "string",
+            "description": "Boolean value which indicates this asset supports access in analytical consumption mode"
+          }
+        },
+        "description": "SAP Data Warehouse Cloud asset details"
+      },
+      "ODataAssetsListV1": {
+        "type": "object",
+        "properties": {
+          "odataContext": {
+            "type": "string"
+          },
+          "@odata.context": {
+            "type": "string",
+            "description": "The odata.context annotation returns the context URL (see [OData-Protocol]) for the payload"
+          },
+          "value": {
+            "type": "array",
+            "description": "List of assets user has access",
+            "items": {
+              "$ref": "#/definitions/AssetEntityV1"
+            }
+          }
+        },
+        "description": "Lists the SAP Data Warehouse Cloud assets user has access"
+      },
+      "ODataAssetV1": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Technical name of the SAP Data Warehouse Cloud asset"
+          },
+          "spaceName": {
+            "type": "string",
+            "description": "Technical name of the SAP Data Warehouse Cloud space to which the asset belongs to"
+          },
+          "label": {
+            "type": "string",
+            "description": "User friendly label of the SAP Data Warehouse Cloud asset"
+          },
+          "assetRelationalMetadataUrl": {
+            "type": "string",
+            "description": "URL to the asset metadata information for relational (row-by-row) access pattern"
+          },
+          "assetRelationalDataUrl": {
+            "type": "string",
+            "description": "URL to the OData service which exposes the asset information for relational (row-by-row) access pattern"
+          },
+          "assetAnalyticalMetadataUrl": {
+            "type": "string",
+            "description": "URL to the asset metadata information for analytical (aggregated) access pattern. Null if analytical consumption is not available"
+          },
+          "assetAnalyticalDataUrl": {
+            "type": "string",
+            "description": "URL to the OData service which exposes the asset information for analytical (aggregated) access pattern. Null if analytical consumption is not available"
+          },
+          "supportsAnalyticalQueries": {
+            "type": "string",
+            "description": "Boolean value which indicates this asset supports access in analytical consumption mode"
+          },
+          "@odata.context": {
+            "type": "string",
+            "description": "The odata.context annotation returns the context URL (see [OData-Protocol]) for the payload"
+          }
+        },
+        "description": "SAP Data Warehouse Cloud asset details"
+      },
+      "ODataSpacesListV1": {
+        "type": "object",
+        "properties": {
+          "odataContext": {
+            "type": "string"
+          },
+          "@odata.context": {
+            "type": "string",
+            "description": "The odata.context annotation returns the context URL (see [OData-Protocol]) for the payload"
+          },
+          "value": {
+            "type": "array",
+            "description": "List of spaces user has access",
+            "items": {
+              "$ref": "#/definitions/SpaceEntityV1"
+            }
+          }
+        },
+        "description": "Lists the SAP Data Warehouse Cloud spaces user has access"
+      },
+      "SpaceEntityV1": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Technical name of the SAP Data Warehouse Cloud space"
+          },
+          "label": {
+            "type": "string",
+            "description": "User friendly label of the SAP Data Warehouse Cloud space"
+          }
+        },
+        "description": "SAP Data Warehouse Cloud space details"
+      },
+      "ODataSpaceV1": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Technical name of the SAP Data Warehouse Cloud space"
+          },
+          "label": {
+            "type": "string",
+            "description": "User friendly label of the SAP Data Warehouse Cloud space"
+          },
+          "@odata.context": {
+            "type": "string",
+            "description": "The odata.context annotation returns the context URL (see [OData-Protocol]) for the payload"
+          }
+        },
+        "description": "SAP Data Warehouse Cloud spaces summary"
+      },
+      "ODataConsumptionV1": {
+        "type": "object",
+        "properties": {
+          "odataContext": {
+            "type": "string"
+          },
+          "@odata.context": {
+            "type": "string",
+            "description": "The odata.context annotation returns the context URL (see [OData-Protocol]) for the payload"
+          },
+          "value": {
+            "type": "array",
+            "description": "List entries returned by the consumed SAP Data Warehouse Cloud model",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "description": "List entries returned by the consumed SAP Data Warehouse Cloud model"
+      },
+      "ErrorResponse" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "stack" : {
+            "type" : "string"
+          },
+          "detail" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "externalDocs": {
+      "description": "For more information, see the business documentation.",
+      "url": "https://help.sap.com/docs/SAP_DATA_WAREHOUSE_CLOUD/c8a54ee704e94e15926551293243fd1d/7a453609c8694b029493e7d87e0de60a.html"
+    }
+}

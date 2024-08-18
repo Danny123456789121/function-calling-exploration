@@ -1,0 +1,2677 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Consolidation Fund Hierarchy",
+    "version": "1.0.0",
+    "description": "A consolidation fund hierarchy is a structure of funds in consolidation. The service provides general information about the hierarchy, like the validity timeframe, as well as structural information about the defined nodes and their consolidation fund leaf assignments."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD/2408.latest/EN/5e/a65ea6b87a4355a31ccc0c83bfa1f3/frameset.htm"
+  },
+  "x-sap-api-type": "ODATAV4",
+  "x-sap-shortText": "Read consolidation fund hierarchies in SAP S/4HANA Cloud for group reporting using this synchronous inbound service",
+  "x-sap-software-min-version": "2408",
+  "x-sap-ext-overview": [
+    {
+      "name": "Communication Scenario",
+      "values": [
+        {
+          "text": "Finance - Cloud Consolidation Data Collection Integration (SAP_COM_0241)",
+          "format": "plain"
+        },
+        {
+          "text": "Finance - Cloud Consolidation Master Data for Group Reporting Integration (SAP_COM_0336)",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Scope Items",
+      "values": [
+        {
+          "text": "[Group Reporting - Data from SAP Group Reporting Data Collection (287)](https://me.sap.com/processnavigator/SolP/287 \" Link To BP \")",
+          "format": "markdown"
+        },
+        {
+          "text": "[Group Reporting - Data from External Systems (2U6)](https://me.sap.com/processnavigator/SolP/2U6 \" Link To BP \")",
+          "format": "markdown"
+        }
+      ]
+    },
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Service Group Name",
+      "values": [
+        {
+          "text": "API_CNSLDTNFUNDHIERARCHY",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Consolidation Fund Hierarchy",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata4/sap/api_cnsldtnfundhierarchy/srvd_a2x/sap/cnsldtnfundhierarchy/0001",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    },
+    {
+      "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata4/sap/api_cnsldtnfundhierarchy/srvd_a2x/sap/cnsldtnfundhierarchy/0001"
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Consolidation Fund Hierarchy"
+    },
+    {
+      "name": "Consolidation Fund - Hierarchy Node"
+    },
+    {
+      "name": "Consolidation Fund Hierarchy Node - Text"
+    },
+    {
+      "name": "Consolidation Fund Hierarchy - Text"
+    }
+  ],
+  "paths": {
+    "/CnsldtnFundHierarchy": {
+      "get": {
+        "summary": "Get entities from CnsldtnFundHierarchy",
+        "tags": [
+          "Consolidation Fund Hierarchy"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "FinancialManagementArea desc",
+                  "CnsldtnFundHierarchy",
+                  "CnsldtnFundHierarchy desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "LastChangedByUser",
+                  "LastChangeDateTime"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_HierarchyNode",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CnsldtnFundHierarchy_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchy/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{ValidityEndDate}": {
+      "parameters": [
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from CnsldtnFundHierarchy by key",
+        "tags": [
+          "Consolidation Fund Hierarchy"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "LastChangedByUser",
+                  "LastChangeDateTime"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_HierarchyNode",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchy/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{ValidityEndDate}/_HierarchyNode": {
+      "parameters": [
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _HierarchyNode",
+        "tags": [
+          "Consolidation Fund Hierarchy",
+          "Consolidation Fund - Hierarchy Node"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "FinancialManagementArea desc",
+                  "CnsldtnFundHierarchy",
+                  "CnsldtnFundHierarchy desc",
+                  "HierarchyNode",
+                  "HierarchyNode desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "ParentNode",
+                  "ParentNode desc",
+                  "HierarchyVersion",
+                  "HierarchyVersion desc",
+                  "Fund",
+                  "Fund desc",
+                  "HierarchyNodeSequence",
+                  "HierarchyNodeSequence desc",
+                  "HierarchyNodeLevel",
+                  "HierarchyNodeLevel desc",
+                  "NodeType",
+                  "NodeType desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "HierarchyNode",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "ParentNode",
+                  "HierarchyVersion",
+                  "Fund",
+                  "HierarchyNodeSequence",
+                  "HierarchyNodeLevel",
+                  "NodeType"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Hierarchy",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CnsldtnFundHierarchyNode_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchy/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{ValidityEndDate}/_Text": {
+      "parameters": [
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _Text",
+        "tags": [
+          "Consolidation Fund Hierarchy",
+          "Consolidation Fund Hierarchy - Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "Language desc",
+                  "FinancialManagementArea",
+                  "FinancialManagementArea desc",
+                  "CnsldtnFundHierarchy",
+                  "CnsldtnFundHierarchy desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "CnsldtnFundHierarchyText",
+                  "CnsldtnFundHierarchyText desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CnsldtnFundHierarchyText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Hierarchy"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CnsldtnFundHierarchyText_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyText_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyNode": {
+      "get": {
+        "summary": "Get entities from CnsldtnFundHierarchyNode",
+        "tags": [
+          "Consolidation Fund - Hierarchy Node"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "FinancialManagementArea desc",
+                  "CnsldtnFundHierarchy",
+                  "CnsldtnFundHierarchy desc",
+                  "HierarchyNode",
+                  "HierarchyNode desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "ParentNode",
+                  "ParentNode desc",
+                  "HierarchyVersion",
+                  "HierarchyVersion desc",
+                  "Fund",
+                  "Fund desc",
+                  "HierarchyNodeSequence",
+                  "HierarchyNodeSequence desc",
+                  "HierarchyNodeLevel",
+                  "HierarchyNodeLevel desc",
+                  "NodeType",
+                  "NodeType desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "HierarchyNode",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "ParentNode",
+                  "HierarchyVersion",
+                  "Fund",
+                  "HierarchyNodeSequence",
+                  "HierarchyNodeLevel",
+                  "NodeType"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Hierarchy",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CnsldtnFundHierarchyNode_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyNode/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{HierarchyNode}/{ValidityEndDate}": {
+      "parameters": [
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "HierarchyNode",
+          "in": "path",
+          "required": true,
+          "description": "Consolidation Hierarchy Node",
+          "schema": {
+            "type": "string",
+            "maxLength": 50
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from CnsldtnFundHierarchyNode by key",
+        "tags": [
+          "Consolidation Fund - Hierarchy Node"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "HierarchyNode",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "ParentNode",
+                  "HierarchyVersion",
+                  "Fund",
+                  "HierarchyNodeSequence",
+                  "HierarchyNodeLevel",
+                  "NodeType"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Hierarchy",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyNode/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{HierarchyNode}/{ValidityEndDate}/_Hierarchy": {
+      "parameters": [
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "HierarchyNode",
+          "in": "path",
+          "required": true,
+          "description": "Consolidation Hierarchy Node",
+          "schema": {
+            "type": "string",
+            "maxLength": 50
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _Hierarchy",
+        "tags": [
+          "Consolidation Fund - Hierarchy Node",
+          "Consolidation Fund Hierarchy"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "LastChangedByUser",
+                  "LastChangeDateTime"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_HierarchyNode",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyNode/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{HierarchyNode}/{ValidityEndDate}/_Text": {
+      "parameters": [
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "HierarchyNode",
+          "in": "path",
+          "required": true,
+          "description": "Consolidation Hierarchy Node",
+          "schema": {
+            "type": "string",
+            "maxLength": 50
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _Text",
+        "tags": [
+          "Consolidation Fund - Hierarchy Node",
+          "Consolidation Fund Hierarchy Node - Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "Language desc",
+                  "FinancialManagementArea",
+                  "FinancialManagementArea desc",
+                  "CnsldtnFundHierarchy",
+                  "CnsldtnFundHierarchy desc",
+                  "HierarchyNode",
+                  "HierarchyNode desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "ParentNode",
+                  "ParentNode desc",
+                  "HierarchyVersion",
+                  "HierarchyVersion desc",
+                  "HierarchyNodeText",
+                  "HierarchyNodeText desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "HierarchyNode",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "ParentNode",
+                  "HierarchyVersion",
+                  "HierarchyNodeText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_HierarchyNode"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CnsldtnFundHierarchyNodeText_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNodeText_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyNodeText": {
+      "get": {
+        "summary": "Get entities from CnsldtnFundHierarchyNodeText",
+        "tags": [
+          "Consolidation Fund Hierarchy Node - Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "Language desc",
+                  "FinancialManagementArea",
+                  "FinancialManagementArea desc",
+                  "CnsldtnFundHierarchy",
+                  "CnsldtnFundHierarchy desc",
+                  "HierarchyNode",
+                  "HierarchyNode desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "ParentNode",
+                  "ParentNode desc",
+                  "HierarchyVersion",
+                  "HierarchyVersion desc",
+                  "HierarchyNodeText",
+                  "HierarchyNodeText desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "HierarchyNode",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "ParentNode",
+                  "HierarchyVersion",
+                  "HierarchyNodeText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_HierarchyNode"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CnsldtnFundHierarchyNodeText_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNodeText_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyNodeText/{Language}/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{HierarchyNode}/{ValidityEndDate}": {
+      "parameters": [
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "HierarchyNode",
+          "in": "path",
+          "required": true,
+          "description": "Consolidation Hierarchy Node",
+          "schema": {
+            "type": "string",
+            "maxLength": 50
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from CnsldtnFundHierarchyNodeText by key",
+        "tags": [
+          "Consolidation Fund Hierarchy Node - Text"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "HierarchyNode",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "ParentNode",
+                  "HierarchyVersion",
+                  "HierarchyNodeText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_HierarchyNode"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNodeText_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyNodeText/{Language}/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{HierarchyNode}/{ValidityEndDate}/_HierarchyNode": {
+      "parameters": [
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "HierarchyNode",
+          "in": "path",
+          "required": true,
+          "description": "Consolidation Hierarchy Node",
+          "schema": {
+            "type": "string",
+            "maxLength": 50
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _HierarchyNode",
+        "tags": [
+          "Consolidation Fund Hierarchy Node - Text",
+          "Consolidation Fund - Hierarchy Node"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "HierarchyNode",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "ParentNode",
+                  "HierarchyVersion",
+                  "Fund",
+                  "HierarchyNodeSequence",
+                  "HierarchyNodeLevel",
+                  "NodeType"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Hierarchy",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyText": {
+      "get": {
+        "summary": "Get entities from CnsldtnFundHierarchyText",
+        "tags": [
+          "Consolidation Fund Hierarchy - Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "Language desc",
+                  "FinancialManagementArea",
+                  "FinancialManagementArea desc",
+                  "CnsldtnFundHierarchy",
+                  "CnsldtnFundHierarchy desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "CnsldtnFundHierarchyText",
+                  "CnsldtnFundHierarchyText desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CnsldtnFundHierarchyText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Hierarchy"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CnsldtnFundHierarchyText_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyText_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyText/{Language}/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{ValidityEndDate}": {
+      "parameters": [
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from CnsldtnFundHierarchyText by key",
+        "tags": [
+          "Consolidation Fund Hierarchy - Text"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CnsldtnFundHierarchyText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Hierarchy"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyText_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CnsldtnFundHierarchyText/{Language}/{FinancialManagementArea}/{CnsldtnFundHierarchy}/{ValidityEndDate}/_Hierarchy": {
+      "parameters": [
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "FinancialManagementArea",
+          "in": "path",
+          "required": true,
+          "description": "Financial Management Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CnsldtnFundHierarchy",
+          "in": "path",
+          "required": true,
+          "description": "Fund Hierarchy",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Validity End Date",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _Hierarchy",
+        "tags": [
+          "Consolidation Fund Hierarchy - Text",
+          "Consolidation Fund Hierarchy"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "FinancialManagementArea",
+                  "CnsldtnFundHierarchy",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "LastChangedByUser",
+                  "LastChangeDateTime"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_HierarchyNode",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET CnsldtnFundHierarchy HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type": {
+        "type": "object",
+        "properties": {
+          "FinancialManagementArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Financial Management Area"
+          },
+          "CnsldtnFundHierarchy": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Fund Hierarchy"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity End Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Last Updated By",
+            "description": "Last Updated by User"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Last Updated At",
+            "description": "Last Updated at (Timestamp)"
+          },
+          "_HierarchyNode": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type"
+            }
+          },
+          "_Text": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyText_Type"
+            }
+          }
+        },
+        "title": "Consolidation Fund Hierarchy"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type-create": {
+        "type": "object",
+        "properties": {
+          "FinancialManagementArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Financial Management Area"
+          },
+          "CnsldtnFundHierarchy": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Fund Hierarchy"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity End Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Last Updated By",
+            "description": "Last Updated by User"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Last Updated At",
+            "description": "Last Updated at (Timestamp)"
+          },
+          "_HierarchyNode": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type-create"
+            }
+          },
+          "_Text": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyText_Type-create"
+            }
+          }
+        },
+        "required": [
+          "FinancialManagementArea",
+          "CnsldtnFundHierarchy",
+          "ValidityEndDate"
+        ],
+        "title": "Consolidation Fund Hierarchy (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type-update": {
+        "type": "object",
+        "properties": {
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Last Updated By",
+            "description": "Last Updated by User"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "title": "Last Updated At",
+            "description": "Last Updated at (Timestamp)"
+          }
+        },
+        "title": "Consolidation Fund Hierarchy (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyText_Type": {
+        "type": "object",
+        "properties": {
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "FinancialManagementArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Financial Management Area"
+          },
+          "CnsldtnFundHierarchy": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Fund Hierarchy"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity End Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "CnsldtnFundHierarchyText": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Fund Hierarchy Text"
+          },
+          "_Hierarchy": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type"
+          }
+        },
+        "title": "Consolidation Fund Hierarchy - Text"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyText_Type-create": {
+        "type": "object",
+        "properties": {
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "FinancialManagementArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Financial Management Area"
+          },
+          "CnsldtnFundHierarchy": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Fund Hierarchy"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity End Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "CnsldtnFundHierarchyText": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Fund Hierarchy Text"
+          },
+          "_Hierarchy": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type-create"
+          }
+        },
+        "required": [
+          "Language",
+          "FinancialManagementArea",
+          "CnsldtnFundHierarchy",
+          "ValidityEndDate"
+        ],
+        "title": "Consolidation Fund Hierarchy - Text (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyText_Type-update": {
+        "type": "object",
+        "properties": {
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "CnsldtnFundHierarchyText": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Fund Hierarchy Text"
+          }
+        },
+        "title": "Consolidation Fund Hierarchy - Text (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type": {
+        "type": "object",
+        "properties": {
+          "FinancialManagementArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Financial Management Area"
+          },
+          "CnsldtnFundHierarchy": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Fund Hierarchy"
+          },
+          "HierarchyNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Node",
+            "description": "Consolidation Hierarchy Node"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity End Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "ParentNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Parent Node",
+            "description": "Consolidation Hierarchy Parent Node"
+          },
+          "HierarchyVersion": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Hierarchy Version",
+            "description": "Consolidation Hierarchy Version"
+          },
+          "Fund": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Fund"
+          },
+          "HierarchyNodeSequence": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Hierarchy Sequence Number",
+            "description": "Consolidation Hierarchy Sequence Number"
+          },
+          "HierarchyNodeLevel": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Hierarchy Level",
+            "description": "Consolidation Hierarchy Level"
+          },
+          "NodeType": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Hierarchy Node Type",
+            "description": "Consolidation Hierarchy Node Type"
+          },
+          "_Hierarchy": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type"
+          },
+          "_Text": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNodeText_Type"
+            }
+          }
+        },
+        "title": "Consolidation Fund - Hierarchy Node"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type-create": {
+        "type": "object",
+        "properties": {
+          "FinancialManagementArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Financial Management Area"
+          },
+          "CnsldtnFundHierarchy": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Fund Hierarchy"
+          },
+          "HierarchyNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Node",
+            "description": "Consolidation Hierarchy Node"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity End Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "ParentNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Parent Node",
+            "description": "Consolidation Hierarchy Parent Node"
+          },
+          "HierarchyVersion": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Hierarchy Version",
+            "description": "Consolidation Hierarchy Version"
+          },
+          "Fund": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Fund"
+          },
+          "HierarchyNodeSequence": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Hierarchy Sequence Number",
+            "description": "Consolidation Hierarchy Sequence Number"
+          },
+          "HierarchyNodeLevel": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Hierarchy Level",
+            "description": "Consolidation Hierarchy Level"
+          },
+          "NodeType": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Hierarchy Node Type",
+            "description": "Consolidation Hierarchy Node Type"
+          },
+          "_Hierarchy": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchy_Type-create"
+          },
+          "_Text": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNodeText_Type-create"
+            }
+          }
+        },
+        "required": [
+          "FinancialManagementArea",
+          "CnsldtnFundHierarchy",
+          "HierarchyNode",
+          "ValidityEndDate"
+        ],
+        "title": "Consolidation Fund - Hierarchy Node (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type-update": {
+        "type": "object",
+        "properties": {
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "ParentNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Parent Node",
+            "description": "Consolidation Hierarchy Parent Node"
+          },
+          "HierarchyVersion": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Hierarchy Version",
+            "description": "Consolidation Hierarchy Version"
+          },
+          "Fund": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Fund"
+          },
+          "HierarchyNodeSequence": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Hierarchy Sequence Number",
+            "description": "Consolidation Hierarchy Sequence Number"
+          },
+          "HierarchyNodeLevel": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Hierarchy Level",
+            "description": "Consolidation Hierarchy Level"
+          },
+          "NodeType": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Hierarchy Node Type",
+            "description": "Consolidation Hierarchy Node Type"
+          }
+        },
+        "title": "Consolidation Fund - Hierarchy Node (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNodeText_Type": {
+        "type": "object",
+        "properties": {
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "FinancialManagementArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Financial Management Area"
+          },
+          "CnsldtnFundHierarchy": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Fund Hierarchy"
+          },
+          "HierarchyNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Node",
+            "description": "Consolidation Hierarchy Node"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity End Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "ParentNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Parent Node",
+            "description": "Consolidation Hierarchy Parent Node"
+          },
+          "HierarchyVersion": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Hierarchy Version",
+            "description": "Consolidation Hierarchy Version"
+          },
+          "HierarchyNodeText": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Node Description",
+            "description": "Consolidation Hierarchy Node Description"
+          },
+          "_HierarchyNode": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type"
+          }
+        },
+        "title": "Consolidation Fund Hierarchy Node - Text"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNodeText_Type-create": {
+        "type": "object",
+        "properties": {
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "FinancialManagementArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Financial Management Area"
+          },
+          "CnsldtnFundHierarchy": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Fund Hierarchy"
+          },
+          "HierarchyNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Node",
+            "description": "Consolidation Hierarchy Node"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity End Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "ParentNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Parent Node",
+            "description": "Consolidation Hierarchy Parent Node"
+          },
+          "HierarchyVersion": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Hierarchy Version",
+            "description": "Consolidation Hierarchy Version"
+          },
+          "HierarchyNodeText": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Node Description",
+            "description": "Consolidation Hierarchy Node Description"
+          },
+          "_HierarchyNode": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNode_Type-create"
+          }
+        },
+        "required": [
+          "Language",
+          "FinancialManagementArea",
+          "CnsldtnFundHierarchy",
+          "HierarchyNode",
+          "ValidityEndDate"
+        ],
+        "title": "Consolidation Fund Hierarchy Node - Text (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cnsldtnfundhierarchy.v0001.CnsldtnFundHierarchyNodeText_Type-update": {
+        "type": "object",
+        "properties": {
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Validity Start Date"
+          },
+          "ParentNode": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Hierarchy Parent Node",
+            "description": "Consolidation Hierarchy Parent Node"
+          },
+          "HierarchyVersion": {
+            "type": "string",
+            "maxLength": 15,
+            "title": "Hierarchy Version",
+            "description": "Consolidation Hierarchy Version"
+          },
+          "HierarchyNodeText": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Node Description",
+            "description": "Consolidation Hierarchy Node Description"
+          }
+        },
+        "title": "Consolidation Fund Hierarchy Node - Text (for update)"
+      },
+      "count": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "description": "The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "target": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)",
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "search": {
+        "name": "$search",
+        "in": "query",
+        "description": "Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {
+              "OV4:API_CNSLDTNFUNDHIERARCHY": ""
+            },
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": [
+        "OV4:API_CNSLDTNFUNDHIERARCHY"
+      ]
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

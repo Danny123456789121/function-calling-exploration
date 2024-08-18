@@ -1,0 +1,358 @@
+{
+  "x-odata-version": "4.0",
+  "swagger": "2.0",
+  "info": {
+    "title": "Address",
+    "description": "Provides functionality to manage address data. Using this API, you can create, retrieve, and update address data with reference to an address ID. Address data is usually associated with other entities like plant, company code and business partner",
+    "version": "1.0.0"
+  },
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "x-sap-api-type": "ODATAV4",
+  "tags": [
+    {
+      "name": "Address"
+    }
+  ],
+  "securityDefinitions": {
+    "Oauth2_ClientCredentials": {
+      "type": "oauth2",
+      "description": "To use this API, you need to obtain the OAuth client credentials (client ID and secret) using the SAP Business Technology Platform cockpit. After that, pass these client credentials to the SAP Business Technology",
+      "tokenUrl": "https://{subaccount}.{landscapehost}/oauth/token",
+      "flow": "application",
+      "scopes": {}
+    }
+  },
+  "security": [
+    {
+      "Oauth2_ClientCredentials": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "https://{url}.{landscapehost}/odata/v4/MasterDataService",
+      "description": "SAP Returnable Packaging Management application",
+      "templates": {
+        "appname": {
+          "description": "SAP Returnable Packaging Management"
+        },
+        "url": {
+          "description": "SAP Returnable Packaging Management Application Url"
+        },
+        "landscapehost": {
+          "description": "SAP Returnable Packaging Management application landscape host"
+        }
+      }
+    }
+  ],
+  "externalDocs": {
+    "description": "SAP Returnable Packaging Management - Product Page",
+    "url": "https://help.sap.com/viewer/product/SAP%20RETURN%20PACK%20MGMT%20OD/SHIP/en-US"
+  },
+  "x-sap-shortText": "Enables you to create, retrieve, and update address data",
+  "host": "sandbox.api.sap.com",
+  "basePath": "/sapreturnablepackagemanagement/odata/v4/MasterDataService",
+  "paths": {
+    "/Address": {
+      "get": {
+        "operationId": "getAddress",
+        "summary": "Retrieves address details",
+        "description": "Retrieves address details  with reference to an address ID, from the SAP Returnable Packaging Management application",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "description": "Search text based on which records are filtered"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query",
+            "description": "Top records to be returned"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query",
+            "description": "Number of records to be skipped"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "description": "Ascending or descending order of records"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "description": "Expand records"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query",
+            "description": "All records to be returned"
+          }
+        ],
+        "tags": [
+          "Address"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested resource retrieval is successful, and a full payload of the requested resource is returned.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/MasterDataService.AddressResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not authorized",
+            "schema": {
+              "$ref": "#/definitions/MasterDataService.ResponseMessage"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAddress",
+        "summary": "Creates or updates address details ",
+        "description": "Creates or updates address details with reference to an address ID, in the SAP Returnable Packaging Management application ",
+        "parameters": [
+          {
+            "name": "Address",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MasterDataService.AddressRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Address"
+        ],
+        "responses": {
+          "201": {
+            "description": "The requested resource creation is successful, and a full payload of the created resource is returned. The location of the created resource is included in the returned Location HTTP header.",
+            "schema": {
+              "$ref": "#/definitions/MasterDataService.AddressResponse"
+            }
+          },
+          "401": {
+            "description": "You are not authorized",
+            "schema": {
+              "$ref": "#/definitions/MasterDataService.ResponseMessage"
+            }
+          },
+          "404": {
+            "description": "Not found. Possible reasons:\n- You provided a wrong URL.\n- The given task you are referring to does not exist.\n- You are not allowed to access the task.",
+            "schema": {
+              "$ref": "#/definitions/MasterDataService.ResponseMessage"
+            }
+          },
+          "500": {
+            "description": "Internal server error. The operation you requested led to an error during execution.",
+            "schema": {
+              "$ref": "#/definitions/MasterDataService.ResponseMessage"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "MasterDataService.AddressRequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Key used to identify address"
+        },
+        "street": {
+          "type": "string",
+          "description": "Street name, which is a part of the address data"
+        },
+        "houseNumber": {
+          "type": "string",
+          "description": "House number, which is a part of the address data"
+        },
+        "addressLine1": {
+          "type": "string",
+          "description": "Address line 1, which is a part of the address data"
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "Address line 2, which is a part of the address data"
+        },
+        "addressLine3": {
+          "type": "string",
+          "description": "Address line 3, which is a part of the address data"
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal code, which is a part of the address data"
+        },
+        "city": {
+          "type": "string",
+          "description": "City name, which is a part of the address data"
+        },
+        "countryKey_code": {
+          "type": "string",
+          "description": "Two-character ISO country code, which is a part of the address data"
+        },
+        "poBox": {
+          "type": "string",
+          "description": "PO box number, which is a part of the address data"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "Mobile telephone number (consisting of dialing code and number), which is a part of the address data"
+        },
+        "telephone": {
+          "type": "string",
+          "description": "Telephone number (consisting of dialing code and number), which is a part of the address data"
+        },
+        "extension": {
+          "type": "string",
+          "description": "Telephone extension number, which is a part of the address data"
+        },
+        "faxNumber": {
+          "type": "string",
+          "description": "Fax number (consisting of dialing code and number), which is a part of the address data"
+        },
+        "email": {
+          "type": "string",
+          "description": "E-mail address, which is a part of the address data"
+        },
+        "contactPerson": {
+          "type": "string",
+          "description": "Contact person, which is a part of the address data"
+        }
+      },
+      "required": [
+        "ID",
+        "address"
+      ]
+    },
+    "MasterDataService.AddressResponse": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Key used to identify address (UUID)"
+        },
+        "address": {
+          "type": "string",
+          "description": "Key used to identify address"
+        },
+        "street": {
+          "type": "string",
+          "description": "Street name, which is a part of the address data"
+        },
+        "houseNumber": {
+          "type": "string",
+          "description": "House number, which is a part of the address data"
+        },
+        "addressLine1": {
+          "type": "string",
+          "description": "Address line 1, which is a part of the address data"
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "Address line 2, which is a part of the address data"
+        },
+        "addressLine3": {
+          "type": "string",
+          "description": "Address line 3, which is a part of the address data"
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal code, which is a part of the address data"
+        },
+        "city": {
+          "type": "string",
+          "description": "City name, which is a part of the address data"
+        },
+        "countryKey_code": {
+          "type": "string",
+          "description": "Two-character ISO country code, which is a part of the address data"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name, which is  a part of the address data"
+        },
+        "poBox": {
+          "type": "string",
+          "description": "PO box number, which is a part of the address data"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "Mobile telephone number (consisting of dialing code and number), which is a part of the address data"
+        },
+        "telephone": {
+          "type": "string",
+          "description": "Telephone number (consisting of dialing code and number), which is a part of the address data"
+        },
+        "extension": {
+          "type": "string",
+          "description": "Telephone extension number, which is a part of the address data"
+        },
+        "faxNumber": {
+          "type": "string",
+          "description": "Fax number (consisting of dialing code and number), which is a part of the address data"
+        },
+        "email": {
+          "type": "string",
+          "description": "E-mail address, which is a part of the address data"
+        },
+        "contactPerson": {
+          "type": "string",
+          "description": "Contact person, which is a part of the address data"
+        }
+      },
+      "required": [
+        "ID",
+        "address"
+      ]
+    },
+    "MasterDataService.ResponseMessage": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Key used to identify the internal message status"
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message"
+        },
+        "message": {
+          "type": "string",
+          "description": "Specify a valid company code ID"
+        }
+      }
+    }
+  }
+}

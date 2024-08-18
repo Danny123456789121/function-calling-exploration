@@ -1,0 +1,989 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Change Record User Status",
+    "version": "1.0.0",
+    "description": "Reads all change record - user status with its user status text in the system. The operation can be used to find, for example, change records user status with its user status text in all languages or as per logon language."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD/2408.latest/EN/8e/afa12df38e40c7be70d1c4bf594e45/frameset.htm"
+  },
+  "x-sap-api-type": "ODATAV4",
+  "x-sap-shortText": "Reads all change record - user status with its user status text in the system",
+  "x-sap-software-min-version": "2408",
+  "x-sap-ext-overview": [
+    {
+      "name": "Communication Scenario",
+      "values": [
+        {
+          "text": "Product Lifecycle Management - Change Record Integration (SAP_COM_0339)",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Scope Items",
+      "values": [
+        {
+          "text": "[Engineering Change Management with Change Records (1NF)](https://me.sap.com/processnavigator/SolP/1NF \" Link To BP \")",
+          "format": "markdown"
+        },
+        {
+          "text": "[Product Change Management with Change Records (64E)](https://me.sap.com/processnavigator/SolP/64E \" Link To BP \")",
+          "format": "markdown"
+        },
+        {
+          "text": "[Product Change Management with Change Records - Process Industries (5QC)](https://me.sap.com/processnavigator/SolP/5QC \" Link To BP \")",
+          "format": "markdown"
+        }
+      ]
+    },
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Service Group Name",
+      "values": [
+        {
+          "text": "API_CHGRECORDUSERSTATUS",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Change Record",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata4/sap/api_chgrecorduserstatus/srvd_a2x/sap/chgrecorduserstatus/0001",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    },
+    {
+      "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata4/sap/api_chgrecorduserstatus/srvd_a2x/sap/chgrecorduserstatus/0001"
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Change Record User Status"
+    },
+    {
+      "name": "Change Record User Status Text"
+    }
+  ],
+  "paths": {
+    "/A_ChgRecordUserStatus": {
+      "get": {
+        "summary": "Get entities from A_ChgRecordUserStatus",
+        "tags": [
+          "Change Record User Status"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ChangeRecordStatus",
+                  "ChangeRecordStatus desc",
+                  "ChangeRecordStatusDescription",
+                  "ChangeRecordStatusDescription desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ChangeRecordStatus",
+                  "ChangeRecordStatusDescription"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of A_ChgRecordUserStatusType",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ChgRecordUserStatus/{ChangeRecordStatus}": {
+      "parameters": [
+        {
+          "name": "ChangeRecordStatus",
+          "in": "path",
+          "required": true,
+          "description": "User Status Code",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from A_ChgRecordUserStatus by key",
+        "tags": [
+          "Change Record User Status"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ChangeRecordStatus",
+                  "ChangeRecordStatusDescription"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ChgRecordUserStatus/{ChangeRecordStatus}/_Text": {
+      "parameters": [
+        {
+          "name": "ChangeRecordStatus",
+          "in": "path",
+          "required": true,
+          "description": "User Status Code",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _Text",
+        "tags": [
+          "Change Record User Status",
+          "Change Record User Status Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "Language desc",
+                  "ChangeRecordStatus",
+                  "ChangeRecordStatus desc",
+                  "ChangeRecordStatusDescription",
+                  "ChangeRecordStatusDescription desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "ChangeRecordStatus",
+                  "ChangeRecordStatusDescription"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_ChangeRecordUserStatus"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of A_ChgRecordUserStatusTextType",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusTextType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ChgRecordUserStatusText": {
+      "get": {
+        "summary": "Get entities from A_ChgRecordUserStatusText",
+        "tags": [
+          "Change Record User Status Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "Language desc",
+                  "ChangeRecordStatus",
+                  "ChangeRecordStatus desc",
+                  "ChangeRecordStatusDescription",
+                  "ChangeRecordStatusDescription desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "ChangeRecordStatus",
+                  "ChangeRecordStatusDescription"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_ChangeRecordUserStatus"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of A_ChgRecordUserStatusTextType",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusTextType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ChgRecordUserStatusText/{Language}/{ChangeRecordStatus}": {
+      "parameters": [
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "ChangeRecordStatus",
+          "in": "path",
+          "required": true,
+          "description": "User Status Code",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from A_ChgRecordUserStatusText by key",
+        "tags": [
+          "Change Record User Status Text"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Language",
+                  "ChangeRecordStatus",
+                  "ChangeRecordStatusDescription"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_ChangeRecordUserStatus"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusTextType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ChgRecordUserStatusText/{Language}/{ChangeRecordStatus}/_ChangeRecordUserStatus": {
+      "parameters": [
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "ChangeRecordStatus",
+          "in": "path",
+          "required": true,
+          "description": "User Status Code",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _ChangeRecordUserStatus",
+        "tags": [
+          "Change Record User Status Text",
+          "Change Record User Status"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ChangeRecordStatus",
+                  "ChangeRecordStatusDescription"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET A_ChgRecordUserStatus HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusType": {
+        "type": "object",
+        "properties": {
+          "ChangeRecordStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "User Status",
+            "description": "User Status Code"
+          },
+          "ChangeRecordStatusDescription": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Status Text"
+          },
+          "_Text": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusTextType"
+            }
+          }
+        },
+        "title": "Change Record User Status"
+      },
+      "com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusType-create": {
+        "type": "object",
+        "properties": {
+          "ChangeRecordStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "User Status",
+            "description": "User Status Code"
+          },
+          "ChangeRecordStatusDescription": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Status Text"
+          },
+          "_Text": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusTextType-create"
+            }
+          }
+        },
+        "required": [
+          "ChangeRecordStatus"
+        ],
+        "title": "Change Record User Status (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusType-update": {
+        "type": "object",
+        "properties": {
+          "ChangeRecordStatusDescription": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Status Text"
+          }
+        },
+        "title": "Change Record User Status (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusTextType": {
+        "type": "object",
+        "properties": {
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "ChangeRecordStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "User Status",
+            "description": "User Status Code"
+          },
+          "ChangeRecordStatusDescription": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Status Text"
+          },
+          "_ChangeRecordUserStatus": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusType"
+          }
+        },
+        "title": "Change Record User Status Text"
+      },
+      "com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusTextType-create": {
+        "type": "object",
+        "properties": {
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "ChangeRecordStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "User Status",
+            "description": "User Status Code"
+          },
+          "ChangeRecordStatusDescription": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Status Text"
+          },
+          "_ChangeRecordUserStatus": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusType-create"
+          }
+        },
+        "required": [
+          "Language",
+          "ChangeRecordStatus"
+        ],
+        "title": "Change Record User Status Text (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_chgrecorduserstatus.v0001.A_ChgRecordUserStatusTextType-update": {
+        "type": "object",
+        "properties": {
+          "ChangeRecordStatusDescription": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Status Text"
+          }
+        },
+        "title": "Change Record User Status Text (for update)"
+      },
+      "count": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "description": "The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "target": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)",
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "search": {
+        "name": "$search",
+        "in": "query",
+        "description": "Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {
+              "OV4:API_CHGRECORDUSERSTATUS": ""
+            },
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": [
+        "OV4:API_CHGRECORDUSERSTATUS"
+      ]
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}
